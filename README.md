@@ -29,4 +29,4 @@ Blog PDF 位于 `assets/documents/output.pdf`。RRR 保留完整目录；由于�
 
 ## 已知问题
 
-缺失素材和 Reflection 页面尚未补齐，详见清单。原粒子脚本保留，未被新封面加载。仓库中的 Webpack workflow 与当前无 npm 构建的静态站点不匹配，不能用于判断 Pages 是否部署成功。
+缺失素材和 Reflection 页面尚未补齐，详见清单。原粒子脚本保留，未被新封面加载。GitHub Actions 使用 `Static website checks` 检查首页资源、锚点和四个项目入口，无需 npm 或 Webpack。可在本地运行 `python3 scripts/check_site.py`。项目内页缺失素材仍单独记录；网站是否发布成功请查看 `pages build and deployment`。
