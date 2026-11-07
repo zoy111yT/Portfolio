@@ -1,278 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MY WEBSITE · Yuting</title>
-
- <link rel="icon" href="assets/images/ICON.png" type="image/png">
-
-  <link rel="stylesheet" href="assets/css/style.css" />
-
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
-
-    .project-item-wrapper {
-      position: relative;
-      display: inline-block;
-    }
-    .project-tooltip {
-      display: none;
-      position: absolute;
-      left: 100%;
-      top: 50%;
-      transform: translateY(-50%);
-      margin-left: 15px;
-      width: 200px;
-      height: auto;
-      padding: 5px;
-      background: white;
-      border: 1px solid #eee;
-      border-radius: 4px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      z-index: 9998;
-      overflow: hidden;
-    }
-    .project-tooltip img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .project-item-wrapper:hover .project-tooltip {
-      display: block;
-    }
-
-
-    .portrait-img {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      border: 4px solid white;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-      object-fit: cover;
-      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-      animation: portraitEntrance 1.2s ease-out forwards;
-
-      margin: 20px auto;
-      display: block;
-    }
-
-    @keyframes portraitEntrance {
-      from { opacity: 0; transform: translateY(20px) scale(0.9); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .portrait-img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 30px 60px rgba(225, 52, 52, 0.2);
-    }
-
-
-    @media (max-width: 768px) {
-      .nav { gap: 8px; padding: 0 15px; }
-      .nav a { padding: 8px 16px; font-size: 0.8rem; }
-      .home-section h1 { font-size: 60px !important; }
-    }
-
-
-    .projects-section, .About-section {
-      padding: 120px 50px;
-      min-height: 80vh;
-    }
-
-    .projects-section { text-align: left; }
-    .project-item-wrapper { position: relative; display: block; padding: 20px 0; border-bottom: 1px solid #000; }
-    .project-item { font-size: 3rem; font-weight: bold; text-decoration: none; color: black; transition: 0.3s; }
-    .project-item:hover { padding-left: 20px; }
-
-    .divider {
-      height: 1px;
-      background: #000;
-      width: 100px;
-      margin: 10px 0;
-    }
-
-
-    .About-section {
-      text-align: center;
-    }
-    .About-section h1 { font-size: 4rem; font-weight: 900; margin-bottom: 20px; }
-    .About-section p { font-size: 1.2rem; color: #ffffff; }
-
-    .home-section h1 { font-size: clamp(48px, 12vw, 180px); }
-    .portrait-wrapper { bottom: 40px; }
-    .project-tooltip { left: auto; right: 0; max-width: 30%; margin-left: 0; }
-    section { scroll-margin-top: 110px; }
-    @media (max-width: 768px) {
-      .header { padding: 15px 0; }
-      .nav { flex-wrap: wrap; }
-      .home-section h1 { font-size: 12vw !important; }
-      .portrait-img { width: 150px; height: 150px; }
-      .projects-section, .About-section, .rrr-section { padding: 100px 20px; }
-      .about-content-container { grid-template-columns: 1fr; gap: 30px; }
-      .work-title { font-size: 12vw; }
-      .work-title::after { font-size: 0.6rem; letter-spacing: 0.2em; }
-      .project-item { font-size: 1.7rem; padding: 16px 24px; }
-      .project-tooltip { display: none !important; }
-      .inputs-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Yuting Zhong — communication design, playful systems, and other ways of seeing.">
+  <meta name="theme-color" content="#eeede5">
+  <title>Yuting Zhong — Design & Other Curiosities</title>
+  <link rel="icon" href="assets/images/ICON.png" type="image/png">
+  <link rel="stylesheet" href="assets/css/home.css">
 </head>
-
 <body>
-
-<header class="header">
-  <nav class="nav">
-    <a href="#home">Home</a>
-    <a href="#About">About</a>
-   <a href="assets/documents/output.pdf" target="_blank">Blog (Outputs)</a>
-    <a href="#projects">Project (CDU)</a>
-    <a href="#rrr">RRR (Inputs)</a> </nav>
+<svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><symbol id="arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol><symbol id="asterisk" viewBox="0 0 100 100"><path d="M50 5v90M5 50h90M18 18l64 64M18 82l64-64" stroke="currentColor" stroke-width="9" fill="none"/></symbol></defs></svg>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="monogram" href="#home" aria-label="Yuting Zhong, home">yz<span><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></span></a>
+  <nav aria-label="Main navigation">
+    <a href="#projects">WORK <span><svg class="icon arrow-down-right" aria-hidden="true"><use href="#arrow"/></svg></span></a><a href="#About">ABOUT <span><svg class="icon arrow-down-right" aria-hidden="true"><use href="#arrow"/></svg></span></a><a href="assets/documents/output.pdf" target="_blank" rel="noopener">OUTPUTS <span><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></span></a><a href="#rrr">INPUTS <span><svg class="icon arrow-down-right" aria-hidden="true"><use href="#arrow"/></svg></span></a>
+  </nav>
+  <a class="hello" href="#contact">SAY HELLO <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
 </header>
-
-  <section id="home" class="home-section">
-    <div class="hero-container">
-      <h1>YUTING ZHONG</h1>
+<main id="main">
+  <section class="hero" id="home" aria-labelledby="hero-title">
+    <div class="hero-meta"><span>COMMUNICATION DESIGN / SOUTHAMPTON, UK</span><span>A WORK IN PLAY. <svg class="icon arrow-down-left" aria-hidden="true"><use href="#arrow"/></svg></span></div>
+    <div class="hero-stage">
+      <h1 id="hero-title"><span class="name-first">YUTING</span><span class="name-last">ZHONG<span class="name-mark">(YZ)</span></span></h1>
+      <div class="portrait-collage"><div class="portrait-paper"></div><img class="hero-portrait" src="assets/images/Portrait.png" alt="Portrait of Yuting Zhong" fetchpriority="high"><span class="portrait-tape">A LITTLE CURIOUS, ALWAYS.</span><span class="portrait-caption">FIG. 01 — THE HUMAN BEHIND THE WORK</span></div>
+      <a class="burst" href="#projects" aria-label="Explore selected work"><span>TAKE<br>A LOOK!<b><svg class="icon arrow-down-left" aria-hidden="true"><use href="#arrow"/></svg></b></span></a>
+      <span class="hero-asterisk" aria-hidden="true"><svg class="asterisk-icon" aria-hidden="true"><use href="#asterisk"/></svg></span>
+      <div class="hero-stickers"><span class="sticker dark">VISUAL THINKING</span><span class="sticker outline">HUMAN (MOSTLY)</span><span class="sticker green">PLAYFUL SYSTEMS <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></span></div>
     </div>
-  <div class="portrait-wrapper">
-    <img src="assets/images/Portrait.png" alt="Portrait" class="portrait-img">
-  </div>
+    <div class="hero-bottom"><p>Making the overlooked<br><em>impossible to ignore.</em></p><a href="#projects">SCROLL TO EXPLORE <span><svg class="icon arrow-down" aria-hidden="true"><use href="#arrow"/></svg></span></a><span class="edition">PORTFOLIO / YZ</span></div>
   </section>
-
- <section id="About" class="About-section">
-
-
-  <div class="about-content-container">
-    <div class="about-left">
-      <h2>About</h2>
+  <div class="ticker" aria-hidden="true"><div>DESIGN IS A WAY OF LOOKING. <span><svg class="asterisk-icon" aria-hidden="true"><use href="#asterisk"/></svg></span> STAY CURIOUS. <span><svg class="asterisk-icon" aria-hidden="true"><use href="#asterisk"/></svg></span> MAKE SOMETHING MATTER. <span><svg class="asterisk-icon" aria-hidden="true"><use href="#asterisk"/></svg></span> DESIGN IS A WAY OF LOOKING. <span><svg class="asterisk-icon" aria-hidden="true"><use href="#asterisk"/></svg></span> STAY CURIOUS. <span><svg class="asterisk-icon" aria-hidden="true"><use href="#asterisk"/></svg></span></div></div>
+  <section class="work-section" id="projects" aria-labelledby="work-title">
+    <div class="section-meta"><span>(01) SELECTED WORK</span><span>EXPERIMENTS, ENCOUNTERS & EVERYTHING BETWEEN</span></div>
+    <div class="work-heading"><h2 id="work-title">WORK<br><em>in play.</em></h2><p>Four projects.<br>Different questions.<br>Always a little curiosity.</p><span class="work-spark" aria-hidden="true"><svg class="icon arrow-down-left" aria-hidden="true"><use href="#arrow"/></svg></span></div>
+    <div class="project-list">
+      <a class="project-row" href="pages/project01.html"><span class="project-number">(01)</span><div class="project-name"><h3>Ghost in<br>the Machine</h3><span>RULES, CHANCE & IMPERFECTION</span></div><span class="project-type">EDITORIAL<br>CONDITIONAL DESIGN</span><span class="project-arrow" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></span><div class="project-preview"><img src="assets/images/project01/zine01-01.jpg" alt="Green Ghost in the Machine zine" loading="lazy"><span>RULES ARE MADE TO PLAY WITH.</span></div></a>
+      <a class="project-row" href="pages/project02.html"><span class="project-number">(02)</span><div class="project-name"><h3>Making the<br>Invisible Visible</h3><span>AN INTERACTIVE SIGNAL MAP OF THE CITY</span></div><span class="project-type">INTERACTION<br>URBAN EXPLORATION</span><span class="project-arrow" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></span><div class="project-preview graphic-preview map-preview" aria-hidden="true"><i></i><i></i><i></i><strong>LOOK<br>CLOSER.</strong><span>SMALL SIGNALS. BIG STORIES.</span></div></a>
+      <a class="project-row" href="pages/project03.html"><span class="project-number">(03)</span><div class="project-name"><h3>The Quantified<br>Self</h3><span>EMOTIONAL GEOGRAPHY, ONE DAY AT A TIME</span></div><span class="project-type">DATA VISUALISATION<br>CREATIVE CODING</span><span class="project-arrow" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></span><div class="project-preview graphic-preview mood-preview" aria-hidden="true"><span class="mood-orbit"></span><strong>FEEL<br>YOUR WAY.</strong><span>7 DAYS / A MAP OF EMOTIONS</span></div></a>
+      <a class="project-row" href="pages/project04.html"><span class="project-number">(04)</span><div class="project-name"><h3>Interactions<br>with Non-humans</h3><span>OTHER WAYS OF SEEING</span></div><span class="project-type">RESEARCH<br>MORE-THAN-HUMAN DESIGN</span><span class="project-arrow" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></span><div class="project-preview graphic-preview nature-preview" aria-hidden="true"><strong>NOT<br>JUST US.</strong><span class="nature-flower"><svg class="asterisk-icon" aria-hidden="true"><use href="#asterisk"/></svg></span><span>OTHER WAYS OF SEEING.</span></div></a>
     </div>
-
-  <div class="about-right">
-  <div class="bio-text">
-    <p>
-      I am a Communication Design postgraduate student at the University of Southampton,
-      focusing on visual and interaction-based practices. My work explores interdisciplinary
-      approaches, often integrating design, technology, and critical thinking. I am particularly
-      interested in humanistic and animal-centered perspectives, and I value collaborative methods
-      that bridge different fields and modes of knowledge.
-    </p>
-  </div>
-</div>
-  <a href="mailto:yutingzhong06@foxmail.com" class="contact-email">
-      yutingzhong06@foxmail.com
-    </a>
-
-      <div class="keywords">
-        <span class="label">Keywords</span>
-        <p>visual communication · interactive installation · interdisciplinary collaboration · human–non-human care</p>
-      </div>
-
-
-    </div>
-</section>
-
-<section id="projects" class="projects-section">
-  <h2 class="work-title">PROJECT · CDU</h2>
-
-  <div class="projects-container">
-    <div class="project-item-wrapper left">
-      <a class="project-item" href="pages/project01.html">Project 01</a>
-      <div class="project-tooltip">
-        <img src="assets/images/project01/zine01-01.jpg" alt="P1">
-      </div>
-    </div>
-
-    <div class="project-item-wrapper right">
-      <a class="project-item" href="pages/project02.html">Project 02</a>
-      <div class="project-tooltip">
-        <img src="assets/images/project02/project02 SET-01.jpg" alt="P2">
-      </div>
-    </div>
-
-    <div class="project-item-wrapper left">
-      <a class="project-item" href="pages/project03.html">Project 03</a>
-      <div class="project-tooltip">
-        <img src="assets/images/project03/P3 SET-01.jpg" alt="P3">
-      </div>
-    </div>
-
-    <div class="project-item-wrapper right">
-      <a class="project-item" href="pages/project04.html">Project 04</a>
-      <div class="project-tooltip">
-        <img src="assets/images/project04/project04 set-01.jpg" alt="P4">
-      </div>
-    </div>
-
-    <div class="project-item-wrapper left" id="reflection-link">
-      <a class="project-item" href="pages/reflection.html">Reflection</a>
-      <div class="project-tooltip">
-        <img src="assets/images/reflection/DIEP1500E01.jpg" alt="Reflection">
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<section id="rrr" class="rrr-section">
-  <div class="container">
-    <h2 class="section-title">RRR / INPUTS</h2>
-    <a href="assets/documents/rrr/Task01 manifesto.pdf"></a>
-    <div class="inputs-grid">
-     <a href="assets/documents/rrr/Task01manifesto.pdf" target="_blank" class="input-card">
-        <div class="image-container"><img src="assets/images/rrr/01.png" alt="P1"></div>
-        <span class="input-category">RRR01 <manifesto class="PDF"></manifesto></span>
-        <h3 class="input-title">Manifesto</h3>
-      </a>
-
-      <a href="assets/documents/rrr/Task02Affordance.pdf" target="_blank" class="input-card">
-        <div class="image-container"><img src="assets/images/rrr/02.jpg" alt="P2"></div>
-        <span class="input-category">RRR02</span>
-        <h3 class="input-title">Affordance</h3>
-      </a>
-
-      <a href="assets/documents/rrr/Task03LettertoMySon.pdf" target="_blank" class="input-card">
-        <div class="image-container"><img src="assets/images/rrr/03.jpg" alt="P3"></div>
-        <span class="input-category">RRR03</span>
-        <h3 class="input-title">Letter to My Son</h3>
-      </a>
-
-      <a href="assets/documents/rrr/Task04Prototyping.pdf" target="_blank" class="input-card">
-        <div class="image-container"><img src="assets/images/rrr/04.jpg" alt="P4"></div>
-        <span class="input-category">RRR04</span>
-        <h3 class="input-title">Prototyping</h3>
-      </a>
-
-      <a href="assets/documents/rrr/Task05 Storytelling.mp4" class="input-card">
-        <div class="image-container"><img src="assets/images/rrr/05.jpg" alt="P5 Video"></div>
-        <span class="input-category">RRR05/Video</span>
-        <h3 class="input-title">Storytelling</h3>
-      </a>
-
-      <a href="assets/documents/rrr/Task06Empathy.pdf" target="_blank" class="input-card">
-        <div class="image-container"><img src="assets/images/rrr/06.jpg" alt="P6"></div>
-        <span class="input-category">RRR06</span>
-        <h3 class="input-title">Empathy</h3>
-      </a>
-
-      <a href="assets/documents/rrr/Task07 Reflection.pdf" target="_blank" class="input-card">
-        <div class="image-container"><img src="assets/images/rrr/07.jpg" alt="Reflection"></div>
-        <span class="input-category">RRR07/Final Review</span>
-        <h3 class="input-title">Course Reflection</h3>
-      </a>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-
+  </section>
+  <section class="about-section" id="About" aria-labelledby="about-title">
+    <div class="section-meta"><span>(02) THE PERSON</span><span>DESIGN / TECHNOLOGY / A HEALTHY DOSE OF WHY?</span></div>
+    <div class="about-layout"><div class="about-art"><h2 id="about-title">A BIT<br><em>ABOUT</em><br>ME<span><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></span></h2><span class="about-badge">HUMAN–NON-HUMAN<br>CARE CLUB</span><div class="eyes" aria-hidden="true"><span></span><span></span></div></div><div class="about-copy"><span class="small-label">HI, I'M YUTING. NICE TO MEET YOU.</span><p class="intro">Curiosity first.<br>Design follows.</p><p>I am a Communication Design postgraduate student at the University of Southampton, focusing on visual and interaction-based practices.</p><p>My work brings together design, technology, and critical thinking. I'm drawn to humanistic and animal-centered perspectives, and to the possibilities that open up when different fields meet.</p><div class="keyword-tags"><span>VISUAL COMMUNICATION</span><span>INTERACTIVE INSTALLATION</span><span>COLLABORATION</span><span>HUMAN–NON-HUMAN CARE</span></div><a class="text-link" href="mailto:yutingzhong06@foxmail.com">LET'S TALK IDEAS <span><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></span></a></div></div>
+  </section>
+  <section class="inputs-section" id="rrr" aria-labelledby="inputs-title">
+    <div class="section-meta"><span>(03) THE NOTEBOOK</span><span>THINGS TAKEN IN. THINGS PUT OUT.</span></div>
+    <div class="inputs-heading"><h2 id="inputs-title">IN ↔ OUT</h2><p>Reading, reflecting, responding.<br>A practice beyond the final outcome.</p></div>
+    <a class="output-link" href="assets/documents/output.pdf" target="_blank" rel="noopener"><span>BLOG / OUTPUTS</span><strong>Open the notebook.</strong><span class="output-format">PDF <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></span></a>
+    <div class="reading-heading"><span>RRR / INPUTS</span><span>READING & REFLECTION INDEX</span></div>
+    <ol class="reading-list"><li><span>01</span><h3>Manifesto</h3><span>READING NOTES</span></li><li><span>02</span><h3>Affordance</h3><span>READING NOTES</span></li><li><span>03</span><h3>Letter to My Son</h3><span>READING NOTES</span></li><li><span>04</span><h3>Prototyping</h3><span>PROCESS</span></li><li><span>05</span><h3>Storytelling</h3><span>VIDEO</span></li><li><span>06</span><h3>Empathy</h3><span>READING NOTES</span></li><li><span>07</span><h3>Course Reflection</h3><span>REFLECTION</span></li></ol>
+    <p class="index-note">A growing index. Individual entries will be added here.</p>
+  </section>
+  <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="section-meta"><span>(04) YOUR TURN</span><span>GOOD THINGS START WITH A CONVERSATION.</span></div><h2 id="contact-title">GOT A<br><em>WEIRD</em> IDEA<span aria-hidden="true">?</span></h2><div class="contact-row"><a href="mailto:yutingzhong06@foxmail.com"><span>(1) EMAIL ME</span><span>yutingzhong06@foxmail.com <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></span></a><a href="assets/documents/output.pdf" target="_blank" rel="noopener"><span>(2) READ MY WORK</span><span>BLOG / OUTPUTS <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></span></a></div><span class="contact-star" aria-hidden="true"><svg class="asterisk-icon" aria-hidden="true"><use href="#asterisk"/></svg></span></section>
+</main>
+<footer><span>© YUTING ZHONG</span><span>MADE WITH CURIOSITY, NOT CERTAINTY.</span><a href="#home">BACK TO TOP <svg class="icon arrow-up" aria-hidden="true"><use href="#arrow"/></svg></a></footer>
 </body>
 </html>
