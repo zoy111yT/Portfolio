@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project 03 · The Quantified Self</title>
+  <style>
+   
+    :root {
+      --color-good: #ff9a76;
+      --color-neutral: #a7d7c5;
+      --color-anxious: #7d9bb9;
+      --bg-main: #edf3ef;
+      --sidebar-white: rgba(255, 255, 255, 0.95);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--bg-main);
+      color: #333;
+    }
+
+   
+  .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999; 
+      background: white; 
+      padding: 10px 0; 
+    }
+
+
+
+
+
+
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .nav a {
+      padding: 8px 18px;
+      border: 2px solid black;
+      border-radius: 999px;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      background-color: white;
+      transition: all 0.3s ease;
+      font-size: 14px;
+    }
+
+    .nav a:hover { background-color: #f0f0f0; }
+
+   
+    .project-page {
+      padding-top: 140px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      padding-bottom: 100px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 50px;
+      letter-spacing: 1px;
+    }
+
+    .interaction-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+  
+    #control-panel {
+      width: 280px;
+      background: var(--sidebar-white);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      flex-shrink: 0;
+      height: fit-content;
+      text-align: left;
+    }
+
+    #control-panel h2 { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; }
+
+    .day-card {
+      padding: 15px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      background: #fff;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .day-card.active { border: 2px solid black; transform: translateX(5px); }
+    .day-date { font-weight: bold; font-size: 0.9rem; }
+    .day-main-mood { font-size: 0.75rem; color: #888; margin-top: 4px; }
+
+    .mood-tag {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.65rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      color: #fff;
+      font-weight: bold;
+    }
+
+  
+    .map-container {
+      position: relative;
+      flex: 1;
+      max-width: 900px;
+      aspect-ratio: 2000 / 1100;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      overflow: hidden;
+      border: 2px solid black;
+    }
+
+    #particle-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+    }
+
+    #info-panel {
+      position: absolute;
+      bottom: 25px;
+      right: 25px;
+      width: 220px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      z-index: 10;
+      display: none;
+      pointer-events: none;
+      border-top: 5px solid black;
+      text-align: left;
+    }
+
+    .image-gallery {
+      margin-top: 80px;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .image-item { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    .image-item img { width: 100%; display: block; }
+    .image-label { margin-top: 15px; font-size: 14px; color: #666; font-weight: bold; }
+
+    @media (max-width: 900px) {
+      .interaction-wrapper { flex-direction: column; align-items: center; }
+      #control-panel { width: 95%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="#" style="background-color: black; color: white;">Project (CDU)</a>
+      <a href="blog.html">Blog (Outputs)</a>
+      <a href="rrr.html">RRR (Inputs)</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="project-page">
+    <h1>Project #3: The Quantified Self</h1>
+
+    <div class="interaction-wrapper">
+      <div id="control-panel">
+        <h2>Weekly Mood Log</h2>
+        <p style="font-size:0.75rem; color:#999; margin-bottom:20px;">Mapping emotions based on actual movements.</p>
+        <div id="days-container"></div>
+      </div>
+
+      <div class="map-container" id="map-holder">
+        <canvas id="particle-canvas"></canvas>
+        <div id="info-panel">
+          <h3 id="zone-name" style="margin:0; font-size:1rem;">Location</h3>
+          <p id="location-mood" style="font-weight:bold; font-size:13px; margin:10px 0;"></p>
+          <p id="zone-story" style="font-size:12px; color:#666; margin:0; line-height:1.5;"></p>
+        </div>
+      </div>
+    </div>
+
+    
+
+<div class="image-gallery">
+    
+    <div class="image-item">
+        <img src="P3 SET-01.jpg" alt="Data Mapping 1">
+        <div class="image-label">SET-01</div>
+    </div>
+
+    <div class="image-item">
+        <img src="P3 SET-02.jpg" alt="Data Mapping 2">
+        <div class="image-label">SET-02</div>
+    </div>
+
+    <div class="image-item">
+        <img src="P3 SET-03.jpg" alt="Data Mapping 3">
+        <div class="image-label">SET-03</div>
+    </div>
+
+</div>
+
+
+
+
+
+
+<script>
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+const container = document.getElementById('map-holder');
+const infoPanel = document.getElementById('info-panel');
+
+
+const schedule = [
+  { date:"20 Nov", mainMood:"good", path:["DORM","SCHOOL","DORM"], locationMoods: { DORM: "good", SCHOOL: "good" } },
+  { date:"21 Nov", mainMood:"neutral", path:["DORM","STATION","DORM"], locationMoods: { DORM: "neutral", STATION: "neutral" } },
+  { date:"22 Nov", mainMood:"neutral", path:["DORM"], locationMoods: { DORM: "neutral" } },
+  { date:"23 Nov", mainMood:"neutral", path:["DORM"], locationMoods: { DORM: "neutral" } },
+  { date:"24 Nov", mainMood:"anxious", path:["DORM","CITY","DORM"], locationMoods: { DORM: "neutral", CITY: "anxious" } },
+  { date:"25 Nov", mainMood:"good", path:["DORM","SCHOOL","DORM"], locationMoods: { DORM: "good", SCHOOL: "good" } },
+  { date:"26 Nov", mainMood:"good", path:["DORM","SCHOOL","DORM"], locationMoods: { DORM: "good", SCHOOL: "good" } }
+];
+
+let currentIndex = 0;
+
+const P = { 
+  DORM: [0.75, 0.35], 
+  SCHOOL: [0.45, 0.35], 
+  CITY: [0.20, 0.80], 
+  STATION: [0.15, 0.60] 
+};
+
+let mouse = { x: null, y: null, activeZone: null };
+let particles = [];
+const particleCount = 1300;
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2 + 0.5;
+    this.vx = (Math.random() - 0.5) * 0.7;
+    this.vy = (Math.random() - 0.5) * 0.7;
+    this.color = {r: 180, g: 180, b: 180};
+    this.alpha = 0.15;
+    this.angle = Math.random() * Math.PI * 2;
+  }
+  update() {
+    if (mouse.activeZone) {
+      const zone = mouse.activeZone;
+      const tx = P[zone.name][0] * canvas.width;
+      const ty = P[zone.name][1] * canvas.height;
+      const dx = tx - this.x;
+      const dy = ty - this.y;
+      const dist = Math.hypot(dx, dy);
+
+      if (dist < 180) { 
+        const force = (180 - dist) / 180;
+        this.x += dx * 0.08 + Math.cos(this.angle) * 1.2;
+        this.y += dy * 0.08 + Math.sin(this.angle) * 1.2;
+        this.angle += 0.04;
+
+        const locMood = schedule[currentIndex].locationMoods[zone.name] || "neutral";
+        let target = {r: 167, g: 215, b: 197}; 
+        if (locMood === 'good') target = {r: 255, g: 154, b: 118};
+        else if (locMood === 'anxious') target = {r: 125, g: 155, b: 185};
+        
+        this.color.r += (target.r - this.color.r) * 0.1;
+        this.color.g += (target.g - this.color.g) * 0.1;
+        this.color.b += (target.b - this.color.b) * 0.1;
+        this.alpha = 0.7 * force;
+      } else {
+        this.x += this.vx; this.y += this.vy;
+        this.alpha += (0.1 - this.alpha) * 0.05;
+        this.color.r += (180 - this.color.r) * 0.05;
+      }
+    } else {
+      this.x += this.vx; this.y += this.vy;
+      this.alpha += (0.15 - this.alpha) * 0.05;
+      this.color.r += (180 - this.color.r) * 0.05;
+    }
+    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+  }
+  draw() {
+    ctx.fillStyle = `rgba(${this.color.r},${this.color.g},${this.color.b},${this.alpha})`;
+    ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+  }
+}
+
+function initCanvas() {
+  canvas.width = container.clientWidth;
+  canvas.height = container.clientHeight;
+  particles = []; 
+  for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+}
+
+function renderCards() {
+  const containerPanel = document.getElementById('days-container');
+  containerPanel.innerHTML = '';
+  schedule.forEach((s, i) => {
+    const card = document.createElement('div');
+    card.className = `day-card ${i === currentIndex ? 'active' : ''}`;
+    let mainColor = s.mainMood === 'good' ? 'var(--color-good)' : s.mainMood === 'anxious' ? 'var(--color-anxious)' : 'var(--color-neutral)';
+    card.innerHTML = `
+      <div class="day-date">${s.date}</div>
+      <div class="day-main-mood">Daily path: ${s.path.join(' → ')}</div>
+      <div class="mood-tag" style="background:${mainColor}">${s.mainMood}</div>`;
+    card.onclick = () => { currentIndex = i; renderCards(); };
+    containerPanel.appendChild(card);
+  });
+}
+
+function drawLabels() {
+  Object.entries(P).forEach(([name, pos]) => {
+    const x = pos[0] * canvas.width; const y = pos[1] * canvas.height;
+    const isHovered = mouse.activeZone && mouse.activeZone.name === name;
+    ctx.fillStyle = isHovered ? 'rgba(0,0,0,0.8)' : 'rgba(0,0,0,0.2)'; 
+    ctx.font = 'bold 12px Arial'; ctx.textAlign = 'center';
+    ctx.fillText(name, x, y - 25);
+  });
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  const path = schedule[currentIndex].path;
+  if (path.length >= 2) {
+    ctx.strokeStyle = 'rgba(0,0,0,0.06)';
+    ctx.setLineDash([5, 8]);
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    path.forEach((p, i) => {
+      const x = P[p][0] * canvas.width; const y = P[p][1] * canvas.height;
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    });
+    ctx.stroke(); ctx.setLineDash([]);
+  }
+
+  particles.forEach(p => { p.update(); p.draw(); });
+  drawLabels();
+  requestAnimationFrame(animate);
+}
+
+container.addEventListener('mousemove', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  let found = null;
+  let minDistance = 140; 
+  Object.entries(P).forEach(([name, pos]) => {
+    const tx = pos[0] * canvas.width; const ty = pos[1] * canvas.height;
+    const dist = Math.hypot(mx - tx, my - ty);
+    if (dist < minDistance) { found = { name }; minDistance = dist; }
+  });
+  mouse.activeZone = found;
+  if (found) {
+    infoPanel.style.display = 'block';
+    const locMood = schedule[currentIndex].locationMoods[found.name] || "neutral";
+    let labelColor = locMood === 'good' ? 'var(--color-good)' : locMood === 'anxious' ? 'var(--color-anxious)' : 'var(--color-neutral)';
+    document.getElementById('zone-name').innerText = found.name;
+    document.getElementById('location-mood').innerHTML = `Mood: <span style="color:${labelColor}">${locMood.toUpperCase()}</span>`;
+    document.getElementById('zone-story').innerText = `On this day, visiting ${found.name} felt ${locMood}.`;
+  } else {
+    infoPanel.style.display = 'none';
+  }
+});
+
+container.addEventListener('mouseleave', () => { mouse.activeZone = null; infoPanel.style.display = 'none'; });
+window.addEventListener('resize', initCanvas);
+initCanvas(); renderCards(); animate();
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+
+<!DOCTYPE html> 
+<html>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+ 
+
+<link rel="stylesheet" href="style.css"/>
+<head>
+
+<title> MY WEBSITE yuting </title>
+
+</head>
+
+<body>
+
+ <header class="header">
+
+    <nav class="nav">
+     <a href="#home">Home</a>
+ <a href="#projects">Project (CDU)</a>
+ <a href="blog.html">Blog (Outputs)</a>
+ <a href="rrr.html">RRR (Inputs)</a>
+ <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+
+<section id="home">
+  <h1>Welcome</h1>
+</section>
+
+
+<header class="top-empty"></header>
+
+<section id="about" class="about-section">
+  <div class="about-box">
+    <span class="arrow">↖</span>
+    <h2 class="about-title">ABOUT</h2>
+  </div>
+</section>
+
+<section id="projects" class="projects-section">
+  <h2 class="work-title">PROJECT · CDU</h2>
+
+  <div class="projects-container">
+    <a class="project-item" href="project01.html">Project 01</a>
+    <div class="divider"></div>
+
+  <a class="project-item" href="project02.html">Project 02</a>
+    <div class="divider"></div>
+
+    
+    <a class="project-item" href="project03.html">Project 03</a>
+    <div class="divider"></div>
+
+    <a class="project-item" href="project04.html">Project 04</a>
+    <div class="divider"></div>
+  </div>
+</section>
+
+
+
+
+
+
+
+  <div class="section-bottom">
+        <div class="name-line">YUTING ZHONG</div>
+
+       <div class="scroll-down">
+
+      <span class="text">Scroll Down</span>
+
+        <span class="arrow">↓</span>
+       </div>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+    <script src="sketch.js"></script>
+
+
+<section id="about" class="about-section">
+  <div class="about-box">
+    <span class="arrow">↖</span>
+    <h2 class="about-title">ABOUT</h2>
+  </div>
+</section>
+
+
+<section id="work" class="work-section">
+  <h2 class="work-title">WORK</h2>
+
+</section>
+
+
+<script>
+  const header = document.querySelector('.header');
+  const home = document.querySelector('#home');
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        header.classList.remove('is-hidden');
+      } else {
+        header.classList.add('is-hidden');
+      }
+    },
+    { threshold: 0.6 }
+  );
+
+  observer.observe(home);
+</script>
+
+
+
+
+
+<body>
+
+
+
+<blockquote class="about" id="about">ABOUT</blockquote>
+
+
+
+<p>
+image
+<img src="smiley.gif" alt="Smiley face" width="32" height="32"></p>
+
+<p>
+
+
+
+
+
+
+
+
+
+<section id="contact">
+  <h1>Contact</h1>
+  <p>zz</p>
+</section>
+
+
+<head>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

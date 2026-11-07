@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project 02 · MITV</title>
+  <link rel="stylesheet" href="style(1).css">
+
+  <style>
+   
+  .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999; 
+      background: white; 
+      padding: 10px 0; 
+    }
+
+
+    body {
+      background-color: #edf3ef;
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    .project-page {
+      padding-top: 100px; 
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-weight: 300;
+      letter-spacing: 2px;
+    }
+
+   
+    .map-wrapper {
+      padding: 60px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+   
+    @keyframes breathing {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      }
+      50% {
+        transform: scale(1.015); 
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      }
+    }
+
+    .map-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 2000 / 1100;
+      background-image: url("map01bottom-01.jpg");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      
+      
+      animation: breathing 4s ease-in-out infinite;
+    }
+
+    
+    .map-container:hover {
+      animation-play-state: paused;
+    }
+
+    .map-point {
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      background: radial-gradient(circle, #fe3233 0%, #fe3233 40%, rgba(254, 50, 51, 0.3) 70%, rgba(254, 50, 51, 0) 100%);
+      z-index: 10;
+      transition: transform 0.3s ease;
+    }
+
+    .map-point:hover {
+      transform: scale(1.2); 
+      background: radial-gradient(circle, #32CD32 0%, #32CD32 40%, rgba(50, 205, 50, 0.35) 70%, rgba(50, 205, 50, 0) 100%);
+    }
+
+    
+    .image-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      padding: 60px 20px 100px 20px;
+      border-top: 1px solid #ccc;
+      margin-top: 40px;
+    }
+
+    .image-item {
+      width: 100%;
+      background: #fff;
+      padding: 15px;
+      box-sizing: border-box;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border-radius: 4px;
+    }
+
+    .image-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .image-label {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      color: white;
+      z-index: 1000;
+      flex-direction: column;
+      text-align: center;
+      backdrop-filter: blur(5px);
+    }
+
+    .overlay img {
+      max-width: 70%;
+      max-height: 70vh;
+      border: 3px solid white;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    #close {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 40px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .map-point { width: 30px; height: 30px; }
+      .project-page { padding-top: 80px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <nav class="nav">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#projects">Project (CDU)</a>
+      <a href="blog.html">Blog (Outputs)</a>
+      <a href="rrr.html">RRR (Inputs)</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="project-page">
+    <h1>Project#2 MITV</h1>
+
+    <div class="map-wrapper">
+      <div class="map-container">
+        <div class="map-point" data-image="8.jpg" data-note="Order faces forward. Life survives behind." style="top:18%; left:22%;"></div>
+        <div class="map-point" data-image="6.jpg" data-note="Even walls remember." style="top:30%; left:48%;"></div>
+        <div class="map-point" data-image="2.jpg" data-note="Temporary by design. Permanent by trace." style="top:20%; left:55%;"></div>
+        <div class="map-point" data-image="7.jpg" data-note="A letter b, written by time." style="top:42%; left:25%;"></div>
+        <div class="map-point" data-image="3.jpg" data-note="I followed the dripping water and found my own space to grow." style="top:85%; left:70%;"></div>
+        <div class="map-point" data-image="4.jpg" data-note="Stones from another century still hold the night sky." style="top:85%; left:10%;"></div>
+        <div class="map-point" data-image="5.jpg" data-note="The surface stays calm. The crack tells another story." style="top:60%; left:35%;"></div>
+        <div class="map-point" data-image="1.jpg" data-note="Some things may not be remembered, but they still happened." style="top:15%; left:50%;"></div>
+      </div>
+    </div>
+
+    <div class="image-gallery">
+      <div class="image-item">
+        <img src="project02 SET-01.jpg" alt="Set 01">
+        <div class="image-label">Project 02 · SET-01</div>
+      </div>
+      <div class="image-item">
+        <img src="project02 SET-02.jpg" alt="Set 02">
+        <div class="image-label">Project 02 · SET-02</div>
+      </div>
+      <div class="image-item">
+        <img src="project02 SET-03.jpg" alt="Set 03">
+        <div class="image-label">Project 02 · SET-03</div>
+      </div>
+      <div class="image-item">
+        <img src="project02 SET-04.jpg" alt="Set 04">
+        <div class="image-label">Project 02 · SET-04</div>
+      </div>
+    </div>
+  </main>
+
+  <div id="overlay" class="overlay">
+    <span id="close">&times;</span>
+    <img id="overlay-img" src="">
+    <p id="overlay-note"></p>
+  </div>
+
+  <script>
+    const points = document.querySelectorAll('.map-point');
+    const overlay = document.getElementById('overlay');
+    const overlayImg = document.getElementById('overlay-img');
+    const overlayNote = document.getElementById('overlay-note');
+    const closeBtn = document.getElementById('close');
+
+    points.forEach(point => {
+      point.addEventListener('click', () => {
+        overlay.style.display = 'flex';
+        overlayImg.src = point.dataset.image;
+        overlayNote.textContent = point.dataset.note;
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+    });
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
