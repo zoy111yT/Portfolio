@@ -20,8 +20,8 @@ python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
 用浏览器打开本机端口 8000 的首页。无需安装 npm 依赖或构建。
-首页动画使用 CDN 提供的 p5.js，需要联网。
+首页依据上传的 `cover.html` 恢复粉色渐变封面、头像、About、项目入口和 RRR 区域；四个项目仍为独立页面。Blog PDF 位于 `assets/documents/output.pdf`。首页不加载旧粒子脚本。
 
 ## 已知问题
 
-缺失素材尚未补齐。原 `sketch.js` 第一行是 `sketch.js`，会在浏览器中引用未定义变量；本次仅整理文件和引用，未改写动画逻辑。
+缺失素材和 Reflection 页面尚未补齐，详见清单。原粒子脚本保留，未被新封面加载。仓库中的 Webpack workflow 与当前无 npm 构建的静态站点不匹配，不能用于判断 Pages 是否部署成功。

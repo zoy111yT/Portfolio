@@ -1,175 +1,283 @@
-
-<!DOCTYPE html> 
-<html>
-  <link rel="icon" type="image/png" href="assets/images/ICON.png">
- 
-
-<link rel="stylesheet" href="assets/css/style.css"/>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MY WEBSITE · Yuting</title>
 
-<title> MY WEBSITE yuting </title>
+ <link rel="icon" href="assets/images/ICON.png" type="image/png">
 
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    
+    .project-item-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+    .project-tooltip {
+      display: none;
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-left: 15px;
+      width: 200px; 
+      height: auto;
+      padding: 5px;
+      background: white;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 9998;
+      overflow: hidden;
+    }
+    .project-tooltip img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .project-item-wrapper:hover .project-tooltip {
+      display: block;
+    }
+
+    
+    .portrait-img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%; 
+      border: 4px solid white; 
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); 
+      object-fit: cover;
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); 
+      animation: portraitEntrance 1.2s ease-out forwards;
+      
+      margin: 20px auto; 
+      display: block;
+    }
+
+    @keyframes portraitEntrance {
+      from { opacity: 0; transform: translateY(20px) scale(0.9); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .portrait-img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 30px 60px rgba(225, 52, 52, 0.2); 
+    }
+
+   
+    @media (max-width: 768px) {
+      .nav { gap: 8px; padding: 0 15px; }
+      .nav a { padding: 8px 16px; font-size: 0.8rem; }
+      .home-section h1 { font-size: 60px !important; }
+    }
+
+    
+    .projects-section, .About-section { 
+      padding: 120px 50px; 
+      min-height: 80vh; 
+    }
+
+    .projects-section { text-align: left; }
+    .project-item-wrapper { position: relative; display: block; padding: 20px 0; border-bottom: 1px solid #000; }
+    .project-item { font-size: 3rem; font-weight: bold; text-decoration: none; color: black; transition: 0.3s; }
+    .project-item:hover { padding-left: 20px; }
+    
+    .divider {
+      height: 1px;
+      background: #000;
+      width: 100px;
+      margin: 10px 0; 
+    }
+
+    
+    .About-section {
+      text-align: center;
+    }
+    .About-section h1 { font-size: 4rem; font-weight: 900; margin-bottom: 20px; }
+    .About-section p { font-size: 1.2rem; color: #ffffff; }
+  
+    .home-section h1 { font-size: clamp(48px, 12vw, 180px); }
+    .portrait-wrapper { bottom: 40px; }
+    .project-tooltip { left: auto; right: 0; max-width: 30%; margin-left: 0; }
+    section { scroll-margin-top: 110px; }
+    @media (max-width: 768px) {
+      .header { padding: 15px 0; }
+      .nav { flex-wrap: wrap; }
+      .home-section h1 { font-size: 12vw !important; }
+      .portrait-img { width: 150px; height: 150px; }
+      .projects-section, .About-section, .rrr-section { padding: 100px 20px; }
+      .about-content-container { grid-template-columns: 1fr; gap: 30px; }
+      .work-title { font-size: 12vw; }
+      .work-title::after { font-size: 0.6rem; letter-spacing: 0.2em; }
+      .project-item { font-size: 1.7rem; padding: 16px 24px; }
+      .project-tooltip { display: none !important; }
+      .inputs-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 
 <body>
 
- <header class="header">
+<header class="header">
+  <nav class="nav">
+    <a href="#home">Home</a>
+    <a href="#About">About</a>
+   <a href="assets/documents/output.pdf" target="_blank">Blog (Outputs)</a>
+    <a href="#projects">Project (CDU)</a>
+    <a href="#rrr">RRR (Inputs)</a> </nav>
+</header>
 
-    <nav class="nav">
-     <a href="#home">Home</a>
- <a href="#projects">Project (CDU)</a>
- <a href="pages/blog.html">Blog (Outputs)</a>
- <a href="pages/rrr.html">RRR (Inputs)</a>
- <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-
-<section id="home">
-  <h1>Welcome</h1>
-</section>
-
-
-<header class="top-empty"></header>
-
-<section id="about" class="about-section">
-  <div class="about-box">
-    <span class="arrow">↖</span>
-    <h2 class="about-title">ABOUT</h2>
+  <section id="home" class="home-section">
+    <div class="hero-container">
+      <h1>YUTING ZHONG</h1>
+    </div>
+  <div class="portrait-wrapper">
+    <img src="assets/images/Portrait.png" alt="Portrait" class="portrait-img">
   </div>
+  </section>
+
+ <section id="About" class="About-section">
+
+
+  <div class="about-content-container">
+    <div class="about-left">
+      <h2>About</h2>
+    </div>
+    
+  <div class="about-right">
+  <div class="bio-text">
+    <p>
+      I am a Communication Design postgraduate student at the University of Southampton, 
+      focusing on visual and interaction-based practices. My work explores interdisciplinary 
+      approaches, often integrating design, technology, and critical thinking. I am particularly 
+      interested in humanistic and animal-centered perspectives, and I value collaborative methods 
+      that bridge different fields and modes of knowledge.
+    </p>
+  </div>
+</div>
+  <a href="mailto:yutingzhong06@foxmail.com" class="contact-email">
+      yutingzhong06@foxmail.com
+    </a>
+
+      <div class="keywords">
+        <span class="label">Keywords</span>
+        <p>visual communication · interactive installation · interdisciplinary collaboration · human–non-human care</p>
+      </div>
+      
+    
+    </div>
 </section>
 
 <section id="projects" class="projects-section">
   <h2 class="work-title">PROJECT · CDU</h2>
 
   <div class="projects-container">
-    <a class="project-item" href="pages/project01.html">Project 01</a>
-    <div class="divider"></div>
-
-  <a class="project-item" href="pages/project02.html">Project 02</a>
-    <div class="divider"></div>
-
-    
-    <a class="project-item" href="pages/project03.html">Project 03</a>
-    <div class="divider"></div>
-
-    <a class="project-item" href="pages/project04.html">Project 04</a>
-    <div class="divider"></div>
-  </div>
-</section>
-
-
-
-
-
-
-
-  <div class="section-bottom">
-        <div class="name-line">YUTING ZHONG</div>
-
-       <div class="scroll-down">
-
-      <span class="text">Scroll Down</span>
-
-        <span class="arrow">↓</span>
-       </div>
-
+    <div class="project-item-wrapper left">
+      <a class="project-item" href="pages/project01.html">Project 01</a>
+      <div class="project-tooltip">
+        <img src="assets/images/project01/zine01-01.jpg" alt="P1">
+      </div>
     </div>
 
+    <div class="project-item-wrapper right">
+      <a class="project-item" href="pages/project02.html">Project 02</a>
+      <div class="project-tooltip">
+        <img src="assets/images/project02/project02 SET-01.jpg" alt="P2">
+      </div>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
-    <script src="assets/js/sketch.js"></script>
+    <div class="project-item-wrapper left">
+      <a class="project-item" href="pages/project03.html">Project 03</a>
+      <div class="project-tooltip">
+        <img src="assets/images/project03/P3 SET-01.jpg" alt="P3">
+      </div>
+    </div>
 
+    <div class="project-item-wrapper right">
+      <a class="project-item" href="pages/project04.html">Project 04</a>
+      <div class="project-tooltip">
+        <img src="assets/images/project04/project04 set-01.jpg" alt="P4">
+      </div>
+    </div>
 
-<section id="about" class="about-section">
-  <div class="about-box">
-    <span class="arrow">↖</span>
-    <h2 class="about-title">ABOUT</h2>
+    <div class="project-item-wrapper left" id="reflection-link">
+      <a class="project-item" href="pages/reflection.html">Reflection</a>
+      <div class="project-tooltip">
+        <img src="assets/images/reflection/DIEP1500E01.jpg" alt="Reflection">
+      </div>
+    </div>
   </div>
 </section>
 
 
-<section id="work" class="work-section">
-  <h2 class="work-title">WORK</h2>
 
+<section id="rrr" class="rrr-section">
+  <div class="container">
+    <h2 class="section-title">RRR / INPUTS</h2>
+    <a href="assets/documents/rrr/Task01 manifesto.pdf"></a>
+    <div class="inputs-grid">
+     <a href="assets/documents/rrr/Task01manifesto.pdf" target="_blank" class="input-card">
+        <div class="image-container"><img src="assets/images/rrr/01.png" alt="P1"></div>
+        <span class="input-category">RRR01 <manifesto class="PDF"></manifesto></span>
+        <h3 class="input-title">Manifesto</h3>
+      </a>
+
+      <a href="assets/documents/rrr/Task02Affordance.pdf" target="_blank" class="input-card">
+        <div class="image-container"><img src="assets/images/rrr/02.jpg" alt="P2"></div>
+        <span class="input-category">RRR02</span>
+        <h3 class="input-title">Affordance</h3>
+      </a>
+
+      <a href="assets/documents/rrr/Task03LettertoMySon.pdf" target="_blank" class="input-card">
+        <div class="image-container"><img src="assets/images/rrr/03.jpg" alt="P3"></div>
+        <span class="input-category">RRR03</span>
+        <h3 class="input-title">Letter to My Son</h3>
+      </a>
+
+      <a href="assets/documents/rrr/Task04Prototyping.pdf" target="_blank" class="input-card">
+        <div class="image-container"><img src="assets/images/rrr/04.jpg" alt="P4"></div>
+        <span class="input-category">RRR04</span>
+        <h3 class="input-title">Prototyping</h3>
+      </a>
+
+      <a href="assets/documents/rrr/Task05 Storytelling.mp4" class="input-card">
+        <div class="image-container"><img src="assets/images/rrr/05.jpg" alt="P5 Video"></div>
+        <span class="input-category">RRR05/Video</span>
+        <h3 class="input-title">Storytelling</h3>
+      </a>
+
+      <a href="assets/documents/rrr/Task06Empathy.pdf" target="_blank" class="input-card">
+        <div class="image-container"><img src="assets/images/rrr/06.jpg" alt="P6"></div>
+        <span class="input-category">RRR06</span>
+        <h3 class="input-title">Empathy</h3>
+      </a>
+
+      <a href="assets/documents/rrr/Task07 Reflection.pdf" target="_blank" class="input-card">
+        <div class="image-container"><img src="assets/images/rrr/07.jpg" alt="Reflection"></div>
+        <span class="input-category">RRR07/Final Review</span>
+        <h3 class="input-title">Course Reflection</h3>
+      </a>
+    </div>
+  </div>
 </section>
 
 
-<script>
-  const header = document.querySelector('.header');
-  const home = document.querySelector('#home');
-
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        header.classList.remove('is-hidden');
-      } else {
-        header.classList.add('is-hidden');
-      }
-    },
-    { threshold: 0.6 }
-  );
-
-  observer.observe(home);
-</script>
 
 
 
-
-
-<body>
-
-
-
-<blockquote class="about" id="about">ABOUT</blockquote>
-
-
-
-<p>
-image
-<img src="assets/images/smiley.gif" alt="Smiley face" width="32" height="32"></p>
-
-<p>
-
-
-
-
-
-
-
-
-
-<section id="contact">
-  <h1>Contact</h1>
-  <p>zz</p>
-</section>
-
-
-<head>
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-  </style>
-</head>
 
 
 
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </html>
+
+
+
+
+

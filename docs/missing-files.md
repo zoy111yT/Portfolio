@@ -1,7 +1,15 @@
 # 待补充文件
 
-以下文件在整理前就未包含于仓库。请按这些路径补充素材或页面；文件名区分大小写。
+当前页面仍引用以下未包含于仓库的文件；请按这些路径补充，文件名区分大小写。头像、图标、项目一前两张图片与 Blog PDF 已存在。
 
+- `assets/documents/rrr/Task01 manifesto.pdf`
+- `assets/documents/rrr/Task01manifesto.pdf`
+- `assets/documents/rrr/Task02Affordance.pdf`
+- `assets/documents/rrr/Task03LettertoMySon.pdf`
+- `assets/documents/rrr/Task04Prototyping.pdf`
+- `assets/documents/rrr/Task05 Storytelling.mp4`
+- `assets/documents/rrr/Task06Empathy.pdf`
+- `assets/documents/rrr/Task07 Reflection.pdf`
 - `assets/images/project01/project01 set.jpg`
 - `assets/images/project01/zine01-03.jpg`
 - `assets/images/project01/zine01-04.jpg`
@@ -30,6 +38,12 @@
 - `assets/images/project04/project04 set-03.jpg`
 - `assets/images/project04/project04 set-04.jpg`
 - `assets/images/project04/project04 set.jpg`
-- `assets/images/smiley.gif`
-- `pages/blog.html`
-- `pages/rrr.html`
+- `assets/images/reflection/DIEP1500E01.jpg`
+- `assets/images/rrr/01.png`
+- `assets/images/rrr/02.jpg`
+- `assets/images/rrr/03.jpg`
+- `assets/images/rrr/04.jpg`
+- `assets/images/rrr/05.jpg`
+- `assets/images/rrr/06.jpg`
+- `assets/images/rrr/07.jpg`
+- `pages/reflection.html`
