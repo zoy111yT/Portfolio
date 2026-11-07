@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Project 03 · The Quantified Self</title>
   <style>
    
@@ -52,7 +53,7 @@
       color: black;
       font-weight: bold;
       background-color: white;
-      transition: all 0.3s ease;
+      transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease;
       font-size: 14px;
     }
 
@@ -102,12 +103,12 @@
       background: #fff;
       border: 1px solid transparent;
       cursor: pointer;
-      transition: 0.3s ease;
+      transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
     .day-card.active { border: 2px solid black; transform: translateX(5px); }
     .day-date { font-weight: bold; font-size: 0.9rem; }
-    .day-main-mood { font-size: 0.75rem; color: #888; margin-top: 4px; }
+    .day-main-mood { font-size: 0.75rem; color: #555; margin-top: 4px; }
 
     .mood-tag {
       display: inline-block;
@@ -116,7 +117,7 @@
       padding: 4px 12px;
       border-radius: 999px;
       text-transform: uppercase;
-      color: #fff;
+      color: #17221b;
       font-weight: bold;
     }
 
@@ -175,32 +176,43 @@
       #control-panel { width: 95%; }
     }
   </style>
+  <link rel="stylesheet" href="../assets/css/project-accessibility.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="header">
-    <nav class="nav">
+    <nav class="nav" aria-label="Main navigation">
       <a href="../index.html">Home</a>
-      <a href="#" style="background-color: black; color: white;">Project (CDU)</a>
+      <a href="../index.html#projects">Project (CDU)</a>
       <a href="../assets/documents/output.pdf">Blog (Outputs)</a>
       <a href="../index.html#rrr">RRR (Inputs)</a>
       <a href="mailto:yutingzhong06@foxmail.com">Contact</a>
     </nav>
   </header>
 
-  <main class="project-page">
+  <main class="project-page" id="main">
     <h1>Project #3: The Quantified Self</h1>
 
+    <div class="experience-controls"><button type="button" id="animation-toggle" aria-pressed="false" aria-controls="particle-canvas">Pause animation</button></div>
+    <p id="map-instructions" class="content-note">Choose a day, then choose a location on the map to explore its mood. Keyboard and touch controls work too.</p>
+    <p id="mood-summary" class="mood-summary" role="status"></p>
     <div class="interaction-wrapper">
       <div id="control-panel">
         <h2>Weekly Mood Log</h2>
-        <p style="font-size:0.75rem; color:#999; margin-bottom:20px;">Mapping emotions based on actual movements.</p>
+        <p style="font-size:0.75rem; color:#555; margin-bottom:20px;">Mapping emotions based on actual movements.</p>
         <div id="days-container"></div>
       </div>
 
       <div class="map-container" id="map-holder">
-        <canvas id="particle-canvas"></canvas>
-        <div id="info-panel">
+        <canvas id="particle-canvas" aria-hidden="true"></canvas>
+        <div class="zone-controls" role="group" aria-label="Map locations" aria-describedby="map-instructions">
+          <button type="button" class="zone-button" data-zone="DORM" style="left:75%;top:35%" aria-pressed="false" aria-controls="info-panel">Dorm</button>
+          <button type="button" class="zone-button" data-zone="SCHOOL" style="left:45%;top:35%" aria-pressed="false" aria-controls="info-panel">School</button>
+          <button type="button" class="zone-button" data-zone="CITY" style="left:20%;top:80%" aria-pressed="false" aria-controls="info-panel">City</button>
+          <button type="button" class="zone-button" data-zone="STATION" style="left:15%;top:60%" aria-pressed="false" aria-controls="info-panel">Station</button>
+        </div>
+        <div id="info-panel" aria-live="polite">
           <h3 id="zone-name" style="margin:0; font-size:1rem;">Location</h3>
           <p id="location-mood" style="font-weight:bold; font-size:13px; margin:10px 0;"></p>
           <p id="zone-story" style="font-size:12px; color:#666; margin:0; line-height:1.5;"></p>
@@ -213,17 +225,17 @@
 <div class="image-gallery">
     
     <div class="image-item">
-        <img src="../assets/images/project03/P3 SET-01.jpg" alt="Data Mapping 1">
+        <img src="../assets/images/image-pending.svg" data-original-src="../assets/images/project03/P3 SET-01.jpg" alt="Project documentation image — coming soon" width="1200" height="800" loading="lazy">
         <div class="image-label">SET-01</div>
     </div>
 
     <div class="image-item">
-        <img src="../assets/images/project03/P3 SET-02.jpg" alt="Data Mapping 2">
+        <img src="../assets/images/image-pending.svg" data-original-src="../assets/images/project03/P3 SET-02.jpg" alt="Project documentation image — coming soon" width="1200" height="800" loading="lazy">
         <div class="image-label">SET-02</div>
     </div>
 
     <div class="image-item">
-        <img src="../assets/images/project03/P3 SET-03.jpg" alt="Data Mapping 3">
+        <img src="../assets/images/image-pending.svg" data-original-src="../assets/images/project03/P3 SET-03.jpg" alt="Project documentation image — coming soon" width="1200" height="800" loading="lazy">
         <div class="image-label">SET-03</div>
     </div>
 
@@ -234,172 +246,7 @@
 
 
 
-<script>
-const canvas = document.getElementById('particle-canvas');
-const ctx = canvas.getContext('2d');
-const container = document.getElementById('map-holder');
-const infoPanel = document.getElementById('info-panel');
-
-
-const schedule = [
-  { date:"20 Nov", mainMood:"good", path:["DORM","SCHOOL","DORM"], locationMoods: { DORM: "good", SCHOOL: "good" } },
-  { date:"21 Nov", mainMood:"neutral", path:["DORM","STATION","DORM"], locationMoods: { DORM: "neutral", STATION: "neutral" } },
-  { date:"22 Nov", mainMood:"neutral", path:["DORM"], locationMoods: { DORM: "neutral" } },
-  { date:"23 Nov", mainMood:"neutral", path:["DORM"], locationMoods: { DORM: "neutral" } },
-  { date:"24 Nov", mainMood:"anxious", path:["DORM","CITY","DORM"], locationMoods: { DORM: "neutral", CITY: "anxious" } },
-  { date:"25 Nov", mainMood:"good", path:["DORM","SCHOOL","DORM"], locationMoods: { DORM: "good", SCHOOL: "good" } },
-  { date:"26 Nov", mainMood:"good", path:["DORM","SCHOOL","DORM"], locationMoods: { DORM: "good", SCHOOL: "good" } }
-];
-
-let currentIndex = 0;
-
-const P = { 
-  DORM: [0.75, 0.35], 
-  SCHOOL: [0.45, 0.35], 
-  CITY: [0.20, 0.80], 
-  STATION: [0.15, 0.60] 
-};
-
-let mouse = { x: null, y: null, activeZone: null };
-let particles = [];
-const particleCount = 1300;
-
-class Particle {
-  constructor() { this.reset(); }
-  reset() {
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.size = Math.random() * 2 + 0.5;
-    this.vx = (Math.random() - 0.5) * 0.7;
-    this.vy = (Math.random() - 0.5) * 0.7;
-    this.color = {r: 180, g: 180, b: 180};
-    this.alpha = 0.15;
-    this.angle = Math.random() * Math.PI * 2;
-  }
-  update() {
-    if (mouse.activeZone) {
-      const zone = mouse.activeZone;
-      const tx = P[zone.name][0] * canvas.width;
-      const ty = P[zone.name][1] * canvas.height;
-      const dx = tx - this.x;
-      const dy = ty - this.y;
-      const dist = Math.hypot(dx, dy);
-
-      if (dist < 180) { 
-        const force = (180 - dist) / 180;
-        this.x += dx * 0.08 + Math.cos(this.angle) * 1.2;
-        this.y += dy * 0.08 + Math.sin(this.angle) * 1.2;
-        this.angle += 0.04;
-
-        const locMood = schedule[currentIndex].locationMoods[zone.name] || "neutral";
-        let target = {r: 167, g: 215, b: 197}; 
-        if (locMood === 'good') target = {r: 255, g: 154, b: 118};
-        else if (locMood === 'anxious') target = {r: 125, g: 155, b: 185};
-        
-        this.color.r += (target.r - this.color.r) * 0.1;
-        this.color.g += (target.g - this.color.g) * 0.1;
-        this.color.b += (target.b - this.color.b) * 0.1;
-        this.alpha = 0.7 * force;
-      } else {
-        this.x += this.vx; this.y += this.vy;
-        this.alpha += (0.1 - this.alpha) * 0.05;
-        this.color.r += (180 - this.color.r) * 0.05;
-      }
-    } else {
-      this.x += this.vx; this.y += this.vy;
-      this.alpha += (0.15 - this.alpha) * 0.05;
-      this.color.r += (180 - this.color.r) * 0.05;
-    }
-    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-  }
-  draw() {
-    ctx.fillStyle = `rgba(${this.color.r},${this.color.g},${this.color.b},${this.alpha})`;
-    ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
-  }
-}
-
-function initCanvas() {
-  canvas.width = container.clientWidth;
-  canvas.height = container.clientHeight;
-  particles = []; 
-  for (let i = 0; i < particleCount; i++) particles.push(new Particle());
-}
-
-function renderCards() {
-  const containerPanel = document.getElementById('days-container');
-  containerPanel.innerHTML = '';
-  schedule.forEach((s, i) => {
-    const card = document.createElement('div');
-    card.className = `day-card ${i === currentIndex ? 'active' : ''}`;
-    let mainColor = s.mainMood === 'good' ? 'var(--color-good)' : s.mainMood === 'anxious' ? 'var(--color-anxious)' : 'var(--color-neutral)';
-    card.innerHTML = `
-      <div class="day-date">${s.date}</div>
-      <div class="day-main-mood">Daily path: ${s.path.join(' → ')}</div>
-      <div class="mood-tag" style="background:${mainColor}">${s.mainMood}</div>`;
-    card.onclick = () => { currentIndex = i; renderCards(); };
-    containerPanel.appendChild(card);
-  });
-}
-
-function drawLabels() {
-  Object.entries(P).forEach(([name, pos]) => {
-    const x = pos[0] * canvas.width; const y = pos[1] * canvas.height;
-    const isHovered = mouse.activeZone && mouse.activeZone.name === name;
-    ctx.fillStyle = isHovered ? 'rgba(0,0,0,0.8)' : 'rgba(0,0,0,0.2)'; 
-    ctx.font = 'bold 12px Arial'; ctx.textAlign = 'center';
-    ctx.fillText(name, x, y - 25);
-  });
-}
-
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-  const path = schedule[currentIndex].path;
-  if (path.length >= 2) {
-    ctx.strokeStyle = 'rgba(0,0,0,0.06)';
-    ctx.setLineDash([5, 8]);
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    path.forEach((p, i) => {
-      const x = P[p][0] * canvas.width; const y = P[p][1] * canvas.height;
-      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    });
-    ctx.stroke(); ctx.setLineDash([]);
-  }
-
-  particles.forEach(p => { p.update(); p.draw(); });
-  drawLabels();
-  requestAnimationFrame(animate);
-}
-
-container.addEventListener('mousemove', (e) => {
-  const rect = canvas.getBoundingClientRect();
-  const mx = e.clientX - rect.left;
-  const my = e.clientY - rect.top;
-  let found = null;
-  let minDistance = 140; 
-  Object.entries(P).forEach(([name, pos]) => {
-    const tx = pos[0] * canvas.width; const ty = pos[1] * canvas.height;
-    const dist = Math.hypot(mx - tx, my - ty);
-    if (dist < minDistance) { found = { name }; minDistance = dist; }
-  });
-  mouse.activeZone = found;
-  if (found) {
-    infoPanel.style.display = 'block';
-    const locMood = schedule[currentIndex].locationMoods[found.name] || "neutral";
-    let labelColor = locMood === 'good' ? 'var(--color-good)' : locMood === 'anxious' ? 'var(--color-anxious)' : 'var(--color-neutral)';
-    document.getElementById('zone-name').innerText = found.name;
-    document.getElementById('location-mood').innerHTML = `Mood: <span style="color:${labelColor}">${locMood.toUpperCase()}</span>`;
-    document.getElementById('zone-story').innerText = `On this day, visiting ${found.name} felt ${locMood}.`;
-  } else {
-    infoPanel.style.display = 'none';
-  }
-});
-
-container.addEventListener('mouseleave', () => { mouse.activeZone = null; infoPanel.style.display = 'none'; });
-window.addEventListener('resize', initCanvas);
-initCanvas(); renderCards(); animate();
-</script>
+  </main>
+  <script src="../assets/js/mood-map.js" defer></script>
 </body>
 </html>

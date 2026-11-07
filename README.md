@@ -29,4 +29,6 @@ Blog PDF 位于 `assets/documents/output.pdf`。RRR 保留完整目录；由于�
 
 ## 已知问题
 
-缺失素材和 Reflection 页面尚未补齐，详见清单。原粒子脚本保留，未被新封面加载。GitHub Actions 使用 `Static website checks` 检查首页资源、锚点和四个项目入口，无需 npm 或 Webpack。可在本地运行 `python3 scripts/check_site.py`。项目内页缺失素材仍单独记录；网站是否发布成功请查看 `pages build and deployment`。
+缺失素材和 Reflection 页面尚未补齐，详见清单。原粒子脚本保留，未被新封面加载。GitHub Actions 使用 `Static website checks` 检查全部 5 个页面的本地资源、锚点、视口、图片说明与尺寸、主内容区域和跳过导航入口，无需 npm 或 Webpack。可在本地运行 `python3 scripts/check_site.py`。网站是否发布成功请查看 `pages build and deployment`。
+
+首页和项目内页支持键盘导航与减少动态效果。项目一通过前后按钮查看已有 2 页；项目二使用原生按钮与 dialog 查看城市故事；项目三支持日期和地点按钮、文字情绪说明、动画暂停和 URL 状态恢复。缺失素材显示明确占位，原路径保留。规范检查与验证见 `docs/interface-review.md`。

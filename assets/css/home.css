@@ -1116,3 +1116,53 @@ footer a:hover {
   .nonhuman-flower { font-size: 55vw; }
   .art-caption { top: 15px; left: 15px; font-size: 8px; }
 }
+
+/* Interface guideline improvements without changing the collage composition. */
+html { color-scheme: light; }
+body { padding-bottom: env(safe-area-inset-bottom, 0px); }
+a, button { touch-action: manipulation; -webkit-tap-highlight-color: #b6f45266; }
+button { font: inherit; cursor: pointer; }
+button:focus-visible { outline: 3px solid #83280b; outline-offset: 4px; }
+.site-header { padding-top: max(16px, env(safe-area-inset-top)); padding-left: max(3%, env(safe-area-inset-left)); padding-right: max(3%, env(safe-area-inset-right)); }
+.site-header nav a, .hello, .text-link, footer a { min-height: 44px; display: inline-flex; align-items: center; }
+.hello:hover { color: #9b241b; }
+.text-link:hover { color: #752207; }
+.hero-bottom a { display: inline-flex; align-items: center; min-height: 44px; }
+.hero-bottom a:hover { text-decoration: underline; }
+.site-header nav a { transition: transform .2s; }
+h2, h3 { text-wrap: balance; overflow-wrap: break-word; scroll-margin-top: 24px; }
+.hero-meta, .section-meta, .small-label, .card-number, .card-details p, .card-tags span, .reading-heading, .index-note { font-size: 12px; }
+.card-tags span { padding: 7px 10px; }
+.card-details > div, .about-copy, .reading-list li, .output-link > strong { min-width: 0; }
+.contact-row a { min-height: 44px; }
+.contact-row a > span:last-child { overflow-wrap: anywhere; font-size: 13px; }
+.reading-list li > span:last-child { font-size: 10px; }
+.card-number, .reading-list { font-variant-numeric: tabular-nums; }
+.ticker { position: relative; padding-right: 185px; }
+.ticker-toggle { position: absolute; right: 0; top: 0; bottom: 0; width: 180px; min-height: 44px; border: 0; border-left: 1px solid; padding: 10px; background: var(--ink); color: var(--paper); font-size: 13px; z-index: 1; }
+.ticker-toggle:hover { background: #36442a; }
+.ticker-toggle:focus-visible { outline-offset: -5px; outline-color: var(--paper); }
+.ticker.is-paused div { animation-play-state: paused; }
+.output-link { transition: none; }
+.project-art { transition: transform .25s; }
+.hero-portrait { aspect-ratio: 3 / 4; }
+@media (max-width: 650px) {
+  .site-header { padding-left: max(5%, env(safe-area-inset-left)); padding-right: max(5%, env(safe-area-inset-right)); }
+  .site-header nav a { font-size: 11px; }
+  .hero-meta, .section-meta { font-size: 10px; }
+  .small-label, .card-details p, .card-number, .reading-heading, .index-note { font-size: 12px; }
+  .card-tags span { font-size: 10px; }
+  .hero-bottom a { font-size: 10px; }
+  .contact-row a > span:last-child { font-size: 13px; }
+  footer { font-size: 11px; }
+  footer > span:nth-child(2) { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker div { animation-play-state: paused; }
+}
+@media (max-width: 380px) {
+  .site-header nav { flex-wrap: wrap; }
+  .site-header nav a { flex-basis: calc(50% - 4px); }
+}
+.reading-list li > span:first-child { color: #a72b20; font-size: 12px; }
+.burst { background: #bc2d20; }

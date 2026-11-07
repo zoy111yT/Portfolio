@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Project 02 · MITV</title>
   <link rel="stylesheet" href="../assets/css/style.css">
 
@@ -64,7 +65,7 @@
       position: relative;
       width: 100%;
       aspect-ratio: 2000 / 1100;
-      background-image: url("../assets/images/project02/map01bottom-01.jpg");
+      background-image: none; /* Background asset is not supplied yet. */
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
@@ -73,7 +74,7 @@
       border-radius: 4px;
       
       
-      animation: breathing 4s ease-in-out infinite;
+      animation: none;
     }
 
     
@@ -165,12 +166,14 @@
       .project-page { padding-top: 80px; }
     }
   </style>
+  <link rel="stylesheet" href="../assets/css/project-accessibility.css">
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="header">
-    <nav class="nav">
+    <nav class="nav" aria-label="Main navigation">
       <a href="../index.html#home">Home</a>
       <a href="../index.html#projects">Project (CDU)</a>
       <a href="../assets/documents/output.pdf">Blog (Outputs)</a>
@@ -179,73 +182,50 @@
     </nav>
   </header>
 
-  <main class="project-page">
+  <main class="project-page" id="main">
     <h1>Project#2 MITV</h1>
 
+    <p class="content-note">Choose a city marker to read its story. The map background and detail photographs will be added here.</p>
     <div class="map-wrapper">
       <div class="map-container">
-        <div class="map-point" data-image="8.jpg" data-note="Order faces forward. Life survives behind." style="top:18%; left:22%;"></div>
-        <div class="map-point" data-image="6.jpg" data-note="Even walls remember." style="top:30%; left:48%;"></div>
-        <div class="map-point" data-image="2.jpg" data-note="Temporary by design. Permanent by trace." style="top:20%; left:55%;"></div>
-        <div class="map-point" data-image="7.jpg" data-note="A letter b, written by time." style="top:42%; left:25%;"></div>
-        <div class="map-point" data-image="3.jpg" data-note="I followed the dripping water and found my own space to grow." style="top:85%; left:70%;"></div>
-        <div class="map-point" data-image="4.jpg" data-note="Stones from another century still hold the night sky." style="top:85%; left:10%;"></div>
-        <div class="map-point" data-image="5.jpg" data-note="The surface stays calm. The crack tells another story." style="top:60%; left:35%;"></div>
-        <div class="map-point" data-image="1.jpg" data-note="Some things may not be remembered, but they still happened." style="top:15%; left:50%;"></div>
+        <button type="button" class="map-point" data-image="../assets/images/image-pending.svg" data-original-image="../assets/images/project02/8.jpg" data-note="Order faces forward. Life survives behind." style="top:18%; left:22%;" aria-haspopup="dialog" aria-label="Order faces forward. Life survives behind."></button>
+        <button type="button" class="map-point" data-image="../assets/images/image-pending.svg" data-original-image="../assets/images/project02/6.jpg" data-note="Even walls remember." style="top:30%; left:48%;" aria-haspopup="dialog" aria-label="Even walls remember."></button>
+        <button type="button" class="map-point" data-image="../assets/images/image-pending.svg" data-original-image="../assets/images/project02/2.jpg" data-note="Temporary by design. Permanent by trace." style="top:20%; left:55%;" aria-haspopup="dialog" aria-label="Temporary by design. Permanent by trace."></button>
+        <button type="button" class="map-point" data-image="../assets/images/image-pending.svg" data-original-image="../assets/images/project02/7.jpg" data-note="A letter b, written by time." style="top:42%; left:25%;" aria-haspopup="dialog" aria-label="A letter b, written by time."></button>
+        <button type="button" class="map-point" data-image="../assets/images/image-pending.svg" data-original-image="../assets/images/project02/3.jpg" data-note="I followed the dripping water and found my own space to grow." style="top:85%; left:70%;" aria-haspopup="dialog" aria-label="I followed the dripping water and found my own space to grow."></button>
+        <button type="button" class="map-point" data-image="../assets/images/image-pending.svg" data-original-image="../assets/images/project02/4.jpg" data-note="Stones from another century still hold the night sky." style="top:85%; left:10%;" aria-haspopup="dialog" aria-label="Stones from another century still hold the night sky."></button>
+        <button type="button" class="map-point" data-image="../assets/images/image-pending.svg" data-original-image="../assets/images/project02/5.jpg" data-note="The surface stays calm. The crack tells another story." style="top:60%; left:35%;" aria-haspopup="dialog" aria-label="The surface stays calm. The crack tells another story."></button>
+        <button type="button" class="map-point" data-image="../assets/images/image-pending.svg" data-original-image="../assets/images/project02/1.jpg" data-note="Some things may not be remembered, but they still happened." style="top:15%; left:50%;" aria-haspopup="dialog" aria-label="Some things may not be remembered, but they still happened."></button>
       </div>
     </div>
 
     <div class="image-gallery">
       <div class="image-item">
-        <img src="../assets/images/project02/project02 SET-01.jpg" alt="Set 01">
+        <img src="../assets/images/image-pending.svg" data-original-src="../assets/images/project02/project02 SET-01.jpg" alt="Project documentation image — coming soon" width="1200" height="800" loading="lazy">
         <div class="image-label">Project 02 · SET-01</div>
       </div>
       <div class="image-item">
-        <img src="../assets/images/project02/project02 SET-02.jpg" alt="Set 02">
+        <img src="../assets/images/image-pending.svg" data-original-src="../assets/images/project02/project02 SET-02.jpg" alt="Project documentation image — coming soon" width="1200" height="800" loading="lazy">
         <div class="image-label">Project 02 · SET-02</div>
       </div>
       <div class="image-item">
-        <img src="../assets/images/project02/project02 SET-03.jpg" alt="Set 03">
+        <img src="../assets/images/image-pending.svg" data-original-src="../assets/images/project02/project02 SET-03.jpg" alt="Project documentation image — coming soon" width="1200" height="800" loading="lazy">
         <div class="image-label">Project 02 · SET-03</div>
       </div>
       <div class="image-item">
-        <img src="../assets/images/project02/project02 SET-04.jpg" alt="Set 04">
+        <img src="../assets/images/image-pending.svg" data-original-src="../assets/images/project02/project02 SET-04.jpg" alt="Project documentation image — coming soon" width="1200" height="800" loading="lazy">
         <div class="image-label">Project 02 · SET-04</div>
       </div>
     </div>
   </main>
 
-  <div id="overlay" class="overlay">
-    <span id="close">&times;</span>
-    <img id="overlay-img" src="">
+  <dialog id="overlay" class="overlay" aria-labelledby="overlay-title" aria-describedby="overlay-note">
+    <h2 id="overlay-title" class="sr-only">City detail</h2>
+    <button type="button" id="close" aria-label="Close city detail" autofocus>Close <span aria-hidden="true">×</span></button>
+    <img id="overlay-img" src="../assets/images/image-pending.svg" width="1200" height="800" alt="City photograph — coming soon">
     <p id="overlay-note"></p>
-  </div>
-
-  <script>
-    const points = document.querySelectorAll('.map-point');
-    const overlay = document.getElementById('overlay');
-    const overlayImg = document.getElementById('overlay-img');
-    const overlayNote = document.getElementById('overlay-note');
-    const closeBtn = document.getElementById('close');
-
-    points.forEach(point => {
-      point.addEventListener('click', () => {
-        overlay.style.display = 'flex';
-        overlayImg.src = point.dataset.image;
-        overlayNote.textContent = point.dataset.note;
-      });
-    });
-
-    closeBtn.addEventListener('click', () => {
-      overlay.style.display = 'none';
-    });
-
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) {
-        overlay.style.display = 'none';
-      }
-    });
-  </script>
-
+    <p class="dialog-caption">Photograph coming soon.</p>
+  </dialog>
+  <script src="../assets/js/city-map.js" defer></script>
 </body>
 </html>

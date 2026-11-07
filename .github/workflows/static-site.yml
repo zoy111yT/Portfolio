@@ -11,9 +11,9 @@ permissions:
   contents: read
 
 jobs:
-  check-homepage:
+  check-pages:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check homepage links, assets and project entry points
+      - name: Check all pages, assets and accessible HTML
         run: python3 scripts/check_site.py

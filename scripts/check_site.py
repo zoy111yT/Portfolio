@@ -1,8 +1,4 @@
-"""Check homepage assets and entry points without a Node/Webpack build.
-
-This checks the published homepage, not the incomplete content of project pages.
-See docs/missing-files.md for the separately tracked missing project material.
-"""
+"""Check published page resources and basic accessible HTML without a build."""
 
 from html.parser import HTMLParser
 from pathlib import Path
@@ -10,14 +6,23 @@ from urllib.parse import unquote, urlsplit
 import sys
 
 
-class Homepage(HTMLParser):
+class Page(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.ids = set()
         self.links = []
+        self.images = []
+        self.main_count = 0
+        self.has_viewport = False
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
+        if tag == "main":
+            self.main_count += 1
+        if tag == "meta" and attrs.get("name") == "viewport":
+            self.has_viewport = True
+        if tag == "img":
+            self.images.append(attrs)
         if attrs.get("id"):
             self.ids.add(attrs["id"])
         for name in ("href", "src"):
@@ -27,34 +32,49 @@ class Homepage(HTMLParser):
 
 def main():
     root = Path(__file__).resolve().parents[1]
-    page = Homepage()
-    page.feed((root / "index.html").read_text(encoding="utf-8"))
     errors = []
     files = set()
-    for link in page.links:
-        parsed = urlsplit(link)
-        if parsed.scheme or parsed.netloc:
-            continue
-        if not parsed.path:
-            if parsed.fragment and unquote(parsed.fragment) not in page.ids:
-                errors.append(f"Missing homepage anchor: {link}")
-            continue
-        target = (root / unquote(parsed.path)).resolve()
-        if not target.is_relative_to(root) or not target.is_file():
-            errors.append(f"Missing local file: {parsed.path}")
-        else:
+    pages = {}
+    for source in [root / "index.html", *sorted((root / "pages").glob("project*.html"))]:
+        page = Page()
+        page.feed(source.read_text(encoding="utf-8"))
+        pages[source.resolve()] = page
+
+    for source, page in pages.items():
+        label = source.relative_to(root)
+        if not page.has_viewport:
+            errors.append(f"{label}: missing mobile viewport")
+        if page.main_count != 1:
+            errors.append(f"{label}: expected one main landmark")
+        if "#main" not in page.links:
+            errors.append(f"{label}: missing skip-to-content link")
+        for image in page.images:
+            if "alt" not in image or not image.get("src"):
+                errors.append(f"{label}: image missing alt or source")
+            if not all(image.get(name, "").isdigit() and int(image[name]) > 0 for name in ("width", "height")):
+                errors.append(f"{label}: image missing positive width/height")
+        for link in page.links:
+            parsed = urlsplit(link)
+            if parsed.scheme or parsed.netloc:
+                continue
+            target = (source.parent / unquote(parsed.path)).resolve() if parsed.path else source
+            if not target.is_relative_to(root) or not target.is_file():
+                errors.append(f"{label}: missing local file: {parsed.path}")
+                continue
             files.add(target)
+            if parsed.fragment and target in pages and unquote(parsed.fragment) not in pages[target].ids:
+                errors.append(f"{label}: missing anchor: {link}")
 
     for number in range(1, 5):
         path = f"pages/project{number:02}.html"
-        if path not in page.links:
+        if path not in pages[root / "index.html"].links:
             errors.append(f"Project entry missing from homepage: {path}")
 
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
-    print(f"Passed: {len(files)} homepage resources and all four project entries.")
-    print("Project page content is tracked separately in docs/missing-files.md.")
+    print(f"Passed: {len(pages)} pages, {len(files)} local resources, anchors, image attributes and project entries.")
+    print("Unprovided artwork uses labeled placeholders; see docs/missing-files.md.")
     return 0
 
 

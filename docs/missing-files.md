@@ -1,6 +1,10 @@
 # 待补充文件
 
-当前页面仍引用以下未包含于仓库的文件；请按这些路径补充，文件名区分大小写。头像、图标、项目一前两张图片与 Blog PDF 已存在。
+以下素材尚未提供。头像、图标、项目一前两张图片与 Blog PDF 已存在。
+
+为避免破图，当前项目画廊使用 `assets/images/image-pending.svg` 占位；原路径保留在图片的 `data-original-src` 中。地图详情原路径保留在 `data-original-image` 中。上传真实素材后，需要将 `src` 或 `data-image` 恢复为对应原路径，更新图片尺寸及说明。项目一目前仅展示实际提供的 2 页；其余页待补齐后加入 `assets/js/book-reader.js` 的页面列表。城市地图背景待上传后恢复相应背景引用。
+
+请按以下路径补充，文件名区分大小写：
 
 - `assets/documents/rrr/Task01 manifesto.pdf`
 - `assets/documents/rrr/Task01manifesto.pdf`
