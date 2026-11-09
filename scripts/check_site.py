@@ -65,8 +65,7 @@ def main():
             if parsed.fragment and target in pages and unquote(parsed.fragment) not in pages[target].ids:
                 errors.append(f"{label}: missing anchor: {link}")
 
-    for number in range(1, 5):
-        path = f"pages/project{number:02}.html"
+    for path in ['pages/project-beyond-the-interface.html', 'pages/project-memorial-grove.html', 'pages/project-tipping-point.html', 'pages/project-the-undead-repair-shop.html', 'pages/project-connected.html', 'pages/project01.html', 'pages/project03.html']:
         if path not in pages[root / "index.html"].links:
             errors.append(f"Project entry missing from homepage: {path}")
 
