@@ -39,4 +39,6 @@ Blog PDF 位于 `assets/documents/output.pdf`。RRR 保留完整目录；由于�
 
 绿色翻书与互动动画并列于 MORE EXPLORATIONS；翻书标注 School group project，保留完整 14 页。首页主项目区仍为五个作品集项目。
 
-首页项目视觉位于 `assets/images/home-projects/`，来自原始 PDF 页面裁切或其中的独立图层。第一个项目组合 UI 与拼贴，第二个组合 AR 花园与 App，第三个组合展厅与游戏，后两个分别展示快闪店与书页拼贴。图片铺满区域，卡片采用不同宽高比；详情页与 MORE EXPLORATIONS 保持不变。
+首页项目视觉位于 `assets/images/home-projects/`，来自原始 PDF 页面裁切或其中的独立图层。当前首页以紧凑的错位预览展示五个项目：UI 封面、紫色花朵封面、游戏界面、生态修复拼贴、蓝色书页拼贴。图片铺满区域，卡片采用不同宽高比；详情页与 MORE EXPLORATIONS 保持不变。
+
+项目预览以小尺寸和错位网格展示；1440px 宽桌面上五个项目网格高度约 825px。通用口号已替换为作品集的专业信息，About Me 使用提供的英文介绍并自然换行，包含深圳设计实习意向。

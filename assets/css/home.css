@@ -1215,3 +1215,53 @@ h2, h3 { text-wrap: balance; overflow-wrap: break-word; scroll-margin-top: 24px;
 .connected-composition .main-visual { object-fit:cover; }
 @media(max-width:1000px) and (min-width:651px) { .beyond-composition { aspect-ratio:5/4; } .memorial-composition { aspect-ratio:4/5; } }
 @media(max-width:650px) { .beyond-composition { aspect-ratio:5/4; } .memorial-composition { aspect-ratio:1; } .tipping-composition { aspect-ratio:5/4; } .shop-composition { aspect-ratio:16/10; } .connected-composition { aspect-ratio:1; } }
+
+/* Compact, staggered project index: visitors can scan before opening a case study. */
+.work-section > .section-meta, .work-heading, .project-grid, .more-explorations { max-width:1100px; margin-left:auto; margin-right:auto; }
+.work-heading { padding:28px 0 30px; gap:36px; align-items:center; }
+.work-heading h2 { font-size:clamp(32px,4vw,54px); line-height:1.05; letter-spacing:-.055em; }
+.work-heading p { font-size:12px; margin:0; line-height:1.5; }
+.work-spark { display:none; }
+.project-grid { grid-template-columns:repeat(12,minmax(0,1fr)); grid-template-areas:"one one one one one two two two three three three three" ". four four four four four five five five . . ."; gap:34px 24px; align-items:start; }
+.project-one { width:100%; max-width:410px; margin-top:0; }
+.project-two { width:100%; max-width:200px; margin-top:24px; justify-self:center; }
+.project-three { width:100%; max-width:350px; margin-top:80px; }
+.project-four { width:100%; max-width:250px; margin-top:0; justify-self:center; }
+.project-five { width:100%; max-width:240px; margin-top:32px; justify-self:center; }
+.project-grid .compact-cover { aspect-ratio:1500/994; }
+.project-grid .memorial-cover { aspect-ratio:410/650; }
+.project-grid .game-cover { aspect-ratio:1201/681; }
+.project-grid .concept-cover { aspect-ratio:850/820; }
+.project-grid .book-cover { aspect-ratio:1; }
+.project-grid .compact-cover img { object-fit:cover; object-position:center; }
+.project-grid .card-details { gap:8px; margin-top:10px; padding-top:10px; }
+.project-grid .card-number { flex-basis:20px; font-size:10px; margin-top:4px; }
+.project-grid .card-details h3 { font-size:clamp(17px,1.6vw,23px); line-height:1.1; letter-spacing:-.035em; }
+.project-grid .card-details p { font-size:11px; margin:7px 0 0; line-height:1.4; }
+.project-grid .card-arrow { font-size:21px; }
+.project-grid .card-tags { display:none; }
+.more-explorations { margin-top:48px; }
+.hero-bottom p { line-height:1.4; }
+.portrait-tape { font-size:clamp(8px,.9vw,12px); letter-spacing:0; }
+.about-copy .biography { margin-top:28px; }
+.about-copy .biography p { font-size:clamp(17px,1.65vw,23px); line-height:1.6; max-width:610px; }
+@media(min-width:651px) and (max-width:1000px) {
+ .project-grid { grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-areas:"one two" "three four" "five ."; gap:28px 30px; max-width:680px; }
+ .project-one,.project-three { max-width:300px; }
+ .project-two { max-width:165px; margin-top:28px; }
+ .project-three { margin-top:0; }
+ .project-four { max-width:220px; margin-top:20px; }
+ .project-five { max-width:220px; margin-top:0; justify-self:start; }
+}
+@media(max-width:650px) {
+ .work-heading { flex-wrap:wrap; gap:10px; padding:24px 0; }
+ .work-heading h2 { font-size:36px; }
+ .project-grid { grid-template-columns:minmax(0,1fr); grid-template-areas:"one" "two" "three" "four" "five"; gap:26px; }
+ .project-one { max-width:300px; justify-self:start; }
+ .project-two { max-width:165px; margin-top:0; justify-self:end; }
+ .project-three { max-width:300px; margin-top:0; justify-self:start; }
+ .project-four { max-width:220px; margin-top:0; justify-self:end; }
+ .project-five { max-width:220px; margin-top:0; justify-self:start; }
+ .project-grid .card-details h3 { font-size:20px; }
+ .about-copy .biography p { font-size:17px; }
+}
