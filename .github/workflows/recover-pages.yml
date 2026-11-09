@@ -1,4 +1,4 @@
-# One-time repair: an already timed-out Pages deployment is blocking new releases.
+# Recovery for a timed-out Pages deployment which blocks subsequent releases.
 name: Recover stalled Pages deployment
 on:
   push:
@@ -12,8 +12,19 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
+      - name: Inspect Pages configuration and stalled deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/${GITHUB_REPOSITORY}/pages" --jq '{build_type,source,cname,html_url,https_enforced}'
+          gh api "repos/${GITHUB_REPOSITORY}/pages/deployments/00cb2d786ea3d61a791a2e953b64ca63454a9386" --jq '{status,error}' || true
       - name: Cancel the timed-out Pages deployment
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/deployments/00cb2d786ea3d61a791a2e953b64ca63454a9386/cancel"
+      - name: Request a fresh Pages build through the official API
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
