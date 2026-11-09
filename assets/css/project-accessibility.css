@@ -76,3 +76,15 @@ dialog.overlay .dialog-caption { color: #d3d9ce; font-size: 14px; margin-top: 10
 body { background: #edf3ef; }
 .day-card { border-width: 2px; }
 .image-item img { height: auto; }
+
+/* Keep book pages and counters in sync while slow images are loading. */
+.book-frame { width:100%; aspect-ratio:437/612; }
+.book-frame img[hidden] { display:none; }
+.book-message { min-height:1.5em; margin:12px 0; text-align:center; font-size:14px; line-height:1.5; overflow-wrap:anywhere; }
+.book-reader .content-note { max-width:100%; text-align:center; overflow-wrap:anywhere; }
+#book-retry { display:block; margin:12px auto; min-height:44px; border:1px solid #17221b; border-radius:24px; padding:10px 16px; background:#c3f374; color:#17221b; }
+#book-retry[hidden] { display:none; }
+.book-controls button { flex-shrink:1; }
+@media(max-width:600px) { .book-controls { gap:8px; } .book-controls button { padding:10px 12px; font-size:14px; } #book-status { min-width:85px; font-size:13px; } }
+
+.book-download { text-align:center; font-size:13px; margin:12px 0; }

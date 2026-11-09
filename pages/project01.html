@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ghost in the Machine — School Group Project & Interactive Book</title>
   <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/project-accessibility.css">
+  <link rel="stylesheet" href="../assets/css/project-accessibility.css?v=20261109-atomic-book">
 </head>
 
 <body>
@@ -24,18 +24,21 @@
     <h1>Ghost in the Machine</h1>
     <p class="project-intro">School group project</p>
     <p class="content-note">Working with rules, chance, and imperfection. Explore the complete green-cover zine below.</p>
-    <section class="book-reader" aria-label="Ghost in the Machine zine">
+    <section class="book-reader" aria-busy="true" aria-label="Ghost in the Machine zine">
       <figure class="book-frame">
-        <img id="book-image" src="../assets/images/project01/zine01-01.jpg" width="437" height="612" alt="Ghost in the Machine zine cover" fetchpriority="high">
+        <img id="book-image" src="https://zoy111yt.github.io/Portfolio/assets/images/book-reader/page-01.webp?v=b8caab395cac" decoding="async" aria-describedby="book-status" width="437" height="612" alt="Ghost in the Machine zine cover" fetchpriority="high">
       </figure>
       <div class="book-controls">
         <button type="button" id="book-previous" aria-controls="book-image" disabled>Previous page</button>
         <p id="book-status" role="status">Page 1 of 14</p>
-        <button type="button" id="book-next" aria-controls="book-image">Next page</button>
+        <button type="button" id="book-next" aria-controls="book-image" disabled>Next page</button>
       </div>
+      <p id="book-message" class="book-message" role="status" aria-live="polite"></p>
+      <button id="book-retry" type="button" hidden>Retry page</button>
+      <p class="book-download"><a id="book-original" href="https://zoy111yt.github.io/Portfolio/assets/images/project01/zine01-01.jpg" target="_blank" rel="noopener">Open original page</a></p>
       <p class="content-note">Complete 14-page zine. Use the previous and next buttons to browse.</p>
     </section>
   </main>
-  <script src="../assets/js/book-reader.js" defer></script>
+  <script src="../assets/js/book-reader.js?v=20261109-atomic-book" defer></script>
 </body>
 </html>
