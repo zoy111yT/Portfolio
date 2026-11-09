@@ -1193,3 +1193,25 @@ h2, h3 { text-wrap: balance; overflow-wrap: break-word; scroll-margin-top: 24px;
 .exploration-copy .card-tags { margin-bottom:0; }
 .animation-preview-label { position:absolute; left:9%; top:25%; font-size:clamp(32px,4.5vw,70px); font-weight:900; line-height:.85; letter-spacing:-.06em; transform:rotate(-5deg); }
 @media(max-width:650px) { .exploration-copy { padding:18px; } .animation-preview-label { font-size:52px; } }
+
+/* Homepage project art: fill each frame, composing related outcomes together. */
+.portfolio-art { background:#111; }
+.portfolio-art img { object-fit:cover; }
+.portfolio-art .main-visual { width:100%; height:100%; position:absolute; inset:0; }
+.beyond-composition { aspect-ratio:16/9; display:grid; grid-template-columns:60% 40%; background:linear-gradient(115deg,#f2ffd8,#d8ffa9 60%,#dff7eb); }
+.beyond-composition .visual-pane { min-width:0; height:100%; overflow:hidden; }
+.beyond-composition .visual-pane img { width:100%; height:100%; }
+.beyond-composition .ui-pane img { object-position:48% 50%; }
+.beyond-composition .collage-pane img { object-position:50% 55%; }
+.memorial-composition { aspect-ratio:4/5; background:#21132d; }
+.memorial-composition .main-visual { object-position:60% 30%; }
+.portfolio-art .visual-inset { position:absolute; z-index:2; overflow:hidden; box-shadow:0 12px 30px #0005; border:2px solid #ffffffb3; }
+.memorial-composition .visual-inset { width:58%; aspect-ratio:775/655; right:5%; bottom:5%; transform:rotate(5deg); background:#160e21; }
+.tipping-composition { aspect-ratio:5/4; background:#ddd; }
+.tipping-composition .main-visual { object-position:50% 25%; }
+.tipping-composition .visual-inset { width:72%; aspect-ratio:1465/830; right:4%; bottom:5%; transform:rotate(-4deg); background:#88c691; }
+.shop-composition { aspect-ratio:16/10; }
+.connected-composition { aspect-ratio:1; background:#000; }
+.connected-composition .main-visual { object-fit:cover; }
+@media(max-width:1000px) and (min-width:651px) { .beyond-composition { aspect-ratio:5/4; } .memorial-composition { aspect-ratio:4/5; } }
+@media(max-width:650px) { .beyond-composition { aspect-ratio:5/4; } .memorial-composition { aspect-ratio:1; } .tipping-composition { aspect-ratio:5/4; } .shop-composition { aspect-ratio:16/10; } .connected-composition { aspect-ratio:1; } }
