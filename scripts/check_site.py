@@ -56,8 +56,12 @@ def main():
         for link in page.links:
             parsed = urlsplit(link)
             if parsed.scheme or parsed.netloc:
-                continue
-            target = (source.parent / unquote(parsed.path)).resolve() if parsed.path else source
+                if parsed.netloc.lower() == "zoy111yt.github.io" and parsed.path.startswith("/Portfolio/"):
+                    target = (root / unquote(parsed.path.removeprefix("/Portfolio/"))).resolve()
+                else:
+                    continue
+            else:
+                target = (source.parent / unquote(parsed.path)).resolve() if parsed.path else source
             if not target.is_relative_to(root) or not target.is_file():
                 errors.append(f"{label}: missing local file: {parsed.path}")
                 continue
@@ -66,7 +70,7 @@ def main():
                 errors.append(f"{label}: missing anchor: {link}")
 
     for path in ['pages/project-beyond-the-interface.html', 'pages/project-memorial-grove.html', 'pages/project-tipping-point.html', 'pages/project-the-undead-repair-shop.html', 'pages/project-connected.html', 'pages/project01.html', 'pages/project03.html']:
-        if path not in pages[root / "index.html"].links:
+        if not any(urlsplit(link).path == path for link in pages[root / "index.html"].links):
             errors.append(f"Project entry missing from homepage: {path}")
 
     if errors:
