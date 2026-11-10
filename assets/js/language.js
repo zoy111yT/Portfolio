@@ -232,12 +232,13 @@
     'close city detail':'关闭城市详情',
     'making the hidden physical systems behind everyday generative ai visible.':'让日常生成式 AI 背后隐藏的实体系统变得可见。'
   });
-  const storageKey='portfolio-language';
+  // A new tab starts in English; keep a chosen language while browsing this tab.
+  const storageKey='portfolio-language-session';
   const textRecords=new WeakMap();
   const attributeRecords=new WeakMap();
   const attributes=['aria-label','alt','title','placeholder'];
   let language='en';
-  try { if(localStorage.getItem(storageKey)==='zh-CN')language='zh-CN'; } catch {}
+  try { if(sessionStorage.getItem(storageKey)==='zh-CN')language='zh-CN'; } catch {}
   const originalTitle=document.title;
   const button=document.querySelector('.language-toggle');
   const ignored='script,style,noscript,code,pre,[translate="no"],[data-no-translate],.language-toggle';
@@ -319,11 +320,10 @@
   }
   function setLanguage(next) {
     language=next==='zh-CN'?'zh-CN':'en';
-    try { localStorage.setItem(storageKey,language); } catch {}
+    try { sessionStorage.setItem(storageKey,language); } catch {}
     render();
     document.dispatchEvent(new CustomEvent('portfolio:languagechange',{detail:{language}}));
   }
   if(button)button.addEventListener('click',()=>setLanguage(language==='en'?'zh-CN':'en'));
-  window.addEventListener('storage',event=>{if(event.key===storageKey){language=event.newValue==='zh-CN'?'zh-CN':'en';render();}});
   render();
 })();
