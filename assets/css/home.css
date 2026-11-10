@@ -1374,3 +1374,33 @@ h2, h3 { text-wrap: balance; overflow-wrap: break-word; scroll-margin-top: 24px;
  .project-grid .card-details h3 { font-size:20px; }
  .about-copy .biography p { font-size:17px; }
 }
+
+/* Interactive skill spheres: transparent canvas, original paper-and-ink hero. */
+.skills-collage{position:absolute;right:-3%;top:0;width:55%;height:95%;z-index:4;isolation:isolate}
+#skills-spheres{position:absolute;inset:0;cursor:grab;touch-action:pan-y}
+#skills-spheres:active{cursor:grabbing}
+.skills-controls{position:absolute;bottom:0;right:9%;display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:.08em}
+.skills-toggle{width:36px;height:36px;border:1px solid var(--ink);border-radius:50%;background:var(--paper);color:var(--ink);cursor:pointer;font-size:16px}
+.skills-fallback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.skills-fallback img{width:100%;height:100%;object-fit:contain}
+.skills-ready .skills-fallback{display:none}
+.hero-fallback #skills-spheres{display:none}
+.hero-fallback .skills-fallback{display:grid}
+.hero-identity{position:absolute;left:6%;top:64%;z-index:3;font-size:clamp(16px,1.7vw,27px)}
+.hero-identity p{font-size:12px;margin:8px 0}
+.hero-stage .burst{display:none}
+.hero-stage h1{width:76%;font-weight:900}
+.hero-stage .hero-stickers{left:15%;bottom:2%;font-size:clamp(15px,1.8vw,30px)}
+@media(max-width:760px){
+.hero-stage .skills-collage{width:76%;height:59%;right:-12%;top:29%}
+.hero-stage h1{width:100%;font-size:23vw}
+.hero-identity{left:3%;top:29%;font-size:15px}
+.hero-identity p{font-size:10px}
+.hero-stage .hero-stickers{left:4%;bottom:1%;font-size:17px}
+.skills-controls{right:22%;bottom:0;font-size:9px}
+.hero-stage .hero-asterisk{bottom:24%;font-size:70px}
+}
+
+@media(max-width:760px){.hero-identity{top:35%}.hero-stage .skills-collage{top:32%;height:54%}}
+
+@media(max-width:760px){.skills-controls{top:10%;bottom:auto;right:22%}.skills-controls>span{display:none}}

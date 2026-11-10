@@ -2,6 +2,10 @@
 (() => {
   'use strict';
   const dictionary = {
+  "interactive floating spheres showing my design tools": "可互动的设计工具技能球",
+  "move / touch": "移动鼠标 / 触摸",
+  "pause skill spheres": "暂停技能球动画",
+  "resume skill spheres": "继续技能球动画",
   "skip to content": "跳转到正文",
   "work": "作品",
   "about": "关于",
