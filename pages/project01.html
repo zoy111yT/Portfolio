@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/project-accessibility.css?v=20261109-atomic-book">
   <link rel="stylesheet" href="../assets/css/project-header.css?v=20261110-unified">
+  <link rel="stylesheet" href="../assets/css/book-showcase.css?v=20261110-spreads">
 </head>
 
 <body>
@@ -16,25 +17,31 @@
     <nav aria-label="Main navigation"><a href="../index.html#projects">All work</a><a href="../index.html#About">About</a><a href="../index.html#contact">Contact</a></nav>
   </header>
 
-  <main class="project-page" id="main">
-    <h1>Ghost in the Machine</h1>
-    <p class="project-intro">School group project</p>
-    <p class="content-note">Working with rules, chance, and imperfection. Explore the complete green-cover zine below.</p>
-    <section class="book-reader" aria-busy="true" aria-label="Ghost in the Machine zine">
-      <figure class="book-frame">
-        <img id="book-image" src="https://zoy111yt.github.io/Portfolio/assets/images/book-reader/page-01.webp?v=b8caab395cac" decoding="async" aria-describedby="book-status" width="437" height="612" alt="Ghost in the Machine zine cover" fetchpriority="high">
-      </figure>
-      <div class="book-controls">
-        <button type="button" id="book-previous" aria-controls="book-image" disabled>Previous page</button>
-        <p id="book-status" role="status">Page 1 of 14</p>
-        <button type="button" id="book-next" aria-controls="book-image" disabled>Next page</button>
+  <main class="book-showcase" id="main">
+    <div class="edition-line"><span>06 / SCHOOL GROUP PROJECT</span><span>INTERACTIVE ZINE · 14 PAGES</span></div>
+    <section class="book-reader" aria-label="Ghost in the Machine interactive book" aria-busy="true">
+      <div class="book-stage">
+        <button type="button" class="book-arrow" id="book-previous" aria-label="Previous pages" aria-controls="book-spread" disabled><span aria-hidden="true">←</span></button>
+        <div class="book-spread" id="book-spread" role="group" aria-label="Book pages" tabindex="0" aria-describedby="book-status book-hint">
+          <div class="book-sheets"></div>
+        </div>
+        <button type="button" class="book-arrow" id="book-next" aria-label="Next pages" aria-controls="book-spread" disabled><span aria-hidden="true">→</span></button>
       </div>
-      <p id="book-message" class="book-message" role="status" aria-live="polite"></p>
-      <button id="book-retry" type="button" hidden>Retry page</button>
-      <p class="book-download"><a id="book-original" href="https://zoy111yt.github.io/Portfolio/assets/images/project01/zine01-01.jpg" target="_blank" rel="noopener">Open original page</a></p>
-      <p class="content-note">Complete 14-page zine. Use the previous and next buttons to browse.</p>
+      <div class="reader-bar">
+        <p id="book-hint">Click the arrows or swipe to turn.</p>
+        <p id="book-status" role="status" aria-live="polite">Opening book…</p>
+        <div id="book-originals" aria-label="Full-size pages"></div>
+      </div>
+      <div class="book-feedback"><p id="book-message" role="status" aria-live="polite"></p><button id="book-retry" type="button" hidden>Try again</button></div>
+      <nav class="book-index" aria-label="Choose a book page"></nav>
     </section>
+    <div class="book-colophon">
+      <div><p class="edition-label">RULES, CHANCE &amp; IMPERFECTION</p><h1>Ghost in the Machine</h1></div>
+      <p class="book-description">A school group project exploring conditional design through shared rules, chance and making.</p>
+      <a class="back-to-work" href="../index.html#school-project">Back to all work ↗</a>
+    </div>
+    <noscript><p>JavaScript is needed to turn the pages. <a href="../assets/images/project01/zine01-01.jpg">View the original cover</a>.</p></noscript>
   </main>
-  <script src="../assets/js/book-reader.js?v=20261109-atomic-book" defer></script>
+  <script src="../assets/js/book-reader.js?v=20261110-spreads" defer></script>
 </body>
 </html>
