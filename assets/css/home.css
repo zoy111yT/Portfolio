@@ -1256,9 +1256,9 @@ h2, h3 { text-wrap: balance; overflow-wrap: break-word; scroll-margin-top: 24px;
 /* Keep the green About composition; add the portfolio's full information layer. */
 .about-section { padding-bottom:48px; }
 .about-section .about-layout { margin-top:38px; gap:6%; }
-.about-section .about-art { min-height:420px; }
-.about-section .about-art h2 { font-size:clamp(85px,9vw,130px); }
-.about-identity { position:absolute; left:2%; top:58%; display:grid; gap:4px; }
+.about-section .about-art { min-height:420px; display:flex; flex-direction:column; align-items:flex-start; padding-bottom:115px; }
+.about-section .about-art h2 { font-size:clamp(85px,9vw,130px); width:fit-content; max-width:100%; }
+.about-identity { position:relative; left:auto; top:auto; margin:36px 0 0 2%; display:grid; gap:4px; }
 .about-identity > span { font-size:25px; line-height:1.2; }
 .about-identity strong { font-size:24px; font-weight:500; letter-spacing:-.035em; line-height:1.2; }
 .about-identity p { margin:3px 0 0; font-size:12px; }
@@ -1296,6 +1296,18 @@ h2, h3 { text-wrap: balance; overflow-wrap: break-word; scroll-margin-top: 24px;
 .contact-details a:hover { color:var(--green); text-decoration:underline; text-underline-offset:5px; }
 .contact-details a:focus-visible { outline:2px solid var(--green); outline-offset:5px; }
 .contact-signoff { margin:26px 0 0; color:var(--green); font-size:13px; }
+
+/* Equal, full-width copies keep short translated text in a continuous loop. */
+.ticker { display:flex; align-items:stretch; padding:0; }
+.ticker .ticker-window { flex:1; min-width:0; overflow:hidden; padding:15px 0; width:auto; animation:none; }
+.ticker .ticker-track { display:flex; width:max-content; animation:ticker-loop 35s linear infinite; }
+.ticker .ticker-group { display:flex; flex-shrink:0; align-items:center; justify-content:space-around; gap:30px; min-width:max(100vw,900px); padding-right:30px; width:auto; animation:none; }
+.ticker .ticker-group > span { flex-shrink:0; margin:0; }
+.ticker .ticker-toggle { position:relative; inset:auto; flex:0 0 180px; width:180px; }
+.ticker:hover .ticker-track,.ticker.is-paused .ticker-track { animation-play-state:paused; }
+@keyframes ticker-loop { to { transform:translateX(-50%); } }
+@media(max-width:760px) { .ticker .ticker-toggle { flex-basis:130px; width:130px; font-size:11px; } }
+@media(prefers-reduced-motion:reduce) { .ticker .ticker-track { animation-play-state:paused; } }
 @media(max-width:760px) {
   .contact-detail { grid-template-columns:minmax(0,1fr); gap:7px; padding:18px 0; font-size:16px; }
   .contact-detail dt { color:#c0c2b8; font-size:12px; }
@@ -1313,9 +1325,9 @@ h2, h3 { text-wrap: balance; overflow-wrap: break-word; scroll-margin-top: 24px;
 }
 @media(max-width:760px) {
   .about-section .about-layout { grid-template-columns:1fr; margin-top:30px; gap:28px; }
-  .about-section .about-art { min-height:320px; }
+  .about-section .about-art { min-height:320px; padding-bottom:90px; }
   .about-section .about-art h2 { font-size:clamp(76px,22vw,110px); max-width:none; margin-left:0; }
-  .about-identity { top:55%; left:1%; }
+  .about-identity { top:auto; left:auto; margin-left:1%; }
   .about-identity > span { font-size:21px; }
   .about-identity strong { font-size:21px; }
   .about-section .about-badge { padding:19px 13px; font-size:8px; bottom:2px; }
