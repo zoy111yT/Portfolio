@@ -1,0 +1,23 @@
+/* A compact native language control, shared by all portfolio headers. */
+.language-toggle { display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; gap:6px; min-width:64px; min-height:40px; padding:8px 10px; border:1px solid currentColor; border-radius:999px; background:transparent; color:inherit; font:12px Arial,'PingFang SC','Microsoft YaHei',sans-serif; cursor:pointer; touch-action:manipulation; }
+.language-toggle svg { width:19px; height:19px; fill:none; stroke:currentColor; stroke-width:1.4; flex-shrink:0; }
+.language-toggle:hover { background:#1516130c; }
+.language-toggle:focus-visible { outline:2px solid currentColor; outline-offset:4px; }
+body > header:not(.site-header) > nav { margin-left:auto; }
+.site-header > .language-toggle { margin-left:0; }
+.header .nav { flex-wrap:wrap; }
+.header .language-toggle { min-height:40px; }
+html:lang(zh-CN) body { font-family:Arial,'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif; }
+html:lang(zh-CN) .hero-note { line-height:1.5; }
+html:lang(zh-CN) .keyword-tags span { font-size:12px; }
+html:lang(zh-CN) .case-intro { line-height:1.75; }
+html:lang(zh-CN) .about-art h2 { line-height:1; letter-spacing:-.035em; }
+html:lang(zh-CN) .project-edition p { line-height:1.2; }
+html:lang(zh-CN) .mood-overprint { letter-spacing:0; }
+html:lang(zh-CN) .zone-button { letter-spacing:0; }
+@media(max-width:760px) {
+  .site-header > .language-toggle { order:1; }
+  .language-toggle { min-width:60px; min-height:40px; font-size:12px; }
+  body > header:not(.site-header) { flex-wrap:wrap; column-gap:12px; row-gap:10px; }
+  body > header:not(.site-header) > nav { gap:12px; }
+}
