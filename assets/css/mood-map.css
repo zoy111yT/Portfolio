@@ -55,6 +55,11 @@ h1 { font-size:clamp(28px,3.9vw,76px); font-weight:900; line-height:.93; letter-
 .atlas-footer { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-top:12px; font-size:9px; letter-spacing:.05em; color:#575752; }
 @media(min-width:1750px) { .atlas-masthead,.atlas-layout { grid-template-columns:300px minmax(0,1fr) 210px 130px; } .atlas-layout { grid-template-columns:300px minmax(0,1fr); } .day-card { min-height:48px; } .atlas-intro { font-size:23px; } .day-date { font-size:24px; } .day-main-mood { font-size:23px; } }
 @media(max-width:1200px) { .atlas-masthead { grid-template-columns:220px minmax(0,1fr) 120px; gap:16px; } .week-label { display:none; } .atlas-layout { grid-template-columns:220px minmax(0,1fr); gap:18px; } .project-edition { gap:10px; } .project-edition > span { padding-right:10px; } .day-card { gap:10px; } .day-date,.day-main-mood { font-size:17px; } .atlas-intro { font-size:17px; } #selected-date { font-size:40px; } }
+@media(max-width:1200px) {
+  .zone-button[data-zone="DORM"] { padding:2px 43px 2px 9px; transform:translate(calc(-100% + 14px),-50%); }
+  .zone-button[data-zone="DORM"]::before { left:auto; right:0; }
+  .zone-button[data-zone="DORM"]::after { left:0; right:37px; }
+}
 @media(max-width:760px) {
   .emotional-atlas { padding:18px 4% 16px; }
   .atlas-masthead { grid-template-columns:1fr auto; gap:16px; margin-bottom:18px; }

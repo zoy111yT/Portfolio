@@ -18,10 +18,10 @@ const toggle = document.getElementById('animation-toggle');
 const days = document.getElementById('days-container');
 const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
 const zoneButtons = [...document.querySelectorAll('.zone-button')];
-const P = { SCHOOL:[.15,.18], DORM:[.80,.12], STATION:[.56,.40], CITY:[.51,.78] };
-const dormStation = [P.DORM,[.73,.15],[.67,.20],[.65,.28],[.60,.33],P.STATION];
-const stationCity = [P.STATION,[.53,.48],[.55,.59],[.52,.68],P.CITY];
-const citySchool = [P.CITY,[.45,.65],[.41,.54],[.34,.48],[.25,.42],[.21,.29],P.SCHOOL];
+const P = { SCHOOL:[.13,.17], DORM:[.86,.20], STATION:[.55,.49], CITY:[.48,.73] };
+const dormStation = [P.DORM,[.77,.23],[.70,.28],[.64,.36],[.59,.42],P.STATION];
+const stationCity = [P.STATION,[.53,.56],[.52,.63],[.49,.67],P.CITY];
+const citySchool = [P.CITY,[.42,.62],[.38,.52],[.29,.44],[.21,.32],P.SCHOOL];
 const wholeRoute = [...dormStation,...stationCity.slice(1),...citySchool.slice(1)];
 const colors = { good:'#409e2c', neutral:'#a3a3a0', anxious:'#fa210f' };
 let currentIndex = 4;
@@ -35,19 +35,68 @@ let phase = 0;
 let lastTick = null;
 let randomSeed = 24;
 function random() { randomSeed = (randomSeed * 1664525 + 1013904223) >>> 0; return randomSeed / 4294967296; }
-// Fixed normalized positions keep the composition and controls aligned at any size.
-const particles = Array.from({length:1100}, (_, i) => {
-  let x,y;
-  if (i < 900) {
-    const segment = Math.floor(random() * (wholeRoute.length - 1));
-    const t = random();
-    x = wholeRoute[segment][0]*(1-t)+wholeRoute[segment+1][0]*t;
-    y = wholeRoute[segment][1]*(1-t)+wholeRoute[segment+1][1]*t;
-    const angle = random()*Math.PI*2, radius = Math.pow(random(),1.8)*.13;
-    x += Math.cos(angle)*radius; y += Math.sin(angle)*radius;
-  } else { x=random(); y=random(); }
-  return {x,y,size:i%17===0?9+random()*9:i%7===0?4+random()*5:.7+random()*2.3,phase:random()*Math.PI*2};
+// Categorical mood values drive an expressive intensity, not a measured score.
+const moodEnergy = { neutral:.28, good:.72, anxious:1.15 };
+let pointer = null;
+const routeSegments = wholeRoute.slice(1).map((p,i)=>({start:wholeRoute[i],end:p,length:Math.hypot(p[0]-wholeRoute[i][0],p[1]-wholeRoute[i][1])}));
+const routeLength = routeSegments.reduce((sum,segment)=>sum+segment.length,0);
+function sampleRoute(t) {
+  let distance=((t%1)+1)%1*routeLength;
+  for(const segment of routeSegments){
+    if(distance<=segment.length){
+      const f=distance/segment.length;
+      return {x:segment.start[0]+(segment.end[0]-segment.start[0])*f,y:segment.start[1]+(segment.end[1]-segment.start[1])*f,nx:-(segment.end[1]-segment.start[1])/segment.length,ny:(segment.end[0]-segment.start[0])/segment.length};
+    }
+    distance-=segment.length;
+  }
+  return {x:P.SCHOOL[0],y:P.SCHOOL[1],nx:0,ny:1};
+}
+const particles = Array.from({length:1100}, (_,i)=>{
+  const t=random(),anchor=sampleRoute(t),angle=random()*Math.PI*2;
+  const distance=Math.pow(random(),1.6)*.15;
+  return {
+    kind:i<760?'stream':i<980?'cloud':'ambient',
+    x:i<980?anchor.x+Math.cos(angle)*distance:random(),
+    y:i<980?anchor.y+Math.sin(angle)*distance:random(),
+    t,band:(random()-.5)*Math.pow(random(),.7)*.15,
+    speed:(.006+random()*.016)*(random()>.5?1:-1),
+    size:i%37===0?9+random()*9:i%9===0?3+random()*5:.6+random()*2,
+    phase:random()*Math.PI*2,rate:.65+random()*.8
+  };
 });
+function particlePose(dot,time,energy,zone=null) {
+  let x,y,opacity=1;
+  if(dot.kind==='stream'){
+    const progress=((dot.t+time*dot.speed*(.45+energy))%1+1)%1;
+    const center=sampleRoute(progress);
+    const band=dot.band*(.6+energy*.45)+Math.sin(time*dot.rate+dot.phase)*(.005+energy*.012);
+    x=center.x+center.nx*band;
+    y=center.y+center.ny*band;
+    opacity=Math.min(1,progress*30,(1-progress)*30);
+  }else{
+    const excursion=dot.kind==='cloud'?.012+energy*.022:.018+energy*.032;
+    x=dot.x+Math.sin(time*dot.rate*.5+dot.phase)*excursion+Math.sin(time*.3+dot.phase)*excursion*.4;
+    y=dot.y+Math.cos(time*dot.rate*.4+dot.phase)*excursion;
+  }
+  if(zone){
+    const dx=x-zone[0],dy=y-zone[1],distance=Math.hypot(dx,dy);
+    const attraction=Math.max(0,1-distance/.23)*.3;
+    x-=dx*attraction;y-=dy*attraction;
+    x+=Math.cos(time+dot.phase)*attraction*.018;y+=Math.sin(time+dot.phase)*attraction*.018;
+  }
+  if(pointer){
+    const dx=x-pointer[0],dy=y-pointer[1],distance=Math.hypot(dx,dy);
+    if(distance>0&&distance<.10){const force=(1-distance/.10)*.045;x+=dx/distance*force;y+=dy/distance*force;}
+  }
+  const breath=1+Math.sin(time*dot.rate*(.65+energy*.65)+dot.phase)*(.16+energy*.17)+Math.sin(time*.48+dot.phase)*.09;
+  return {x,y,radius:dot.size*(.7+energy*.4)*breath,opacity};
+}
+container.addEventListener('pointermove',event=>{
+  if(event.pointerType==='touch')return;
+  const bounds=container.getBoundingClientRect();pointer=[(event.clientX-bounds.left)/bounds.width,(event.clientY-bounds.top)/bounds.height];
+  if(paused)drawFrame();
+});
+container.addEventListener('pointerleave',()=>{pointer=null;if(paused)drawFrame();});
 function routeForDay() {
   const path = schedule[currentIndex].path;
   if (path.includes('SCHOOL')) return wholeRoute;
@@ -119,14 +168,13 @@ function drawFrame() {
   strokeRoute(wholeRoute,.18,43*scale);
   strokeRoute(routeForDay(),1,(42+Math.sin(phase*.6)*1.2)*scale);
   const zone=P[previewZone||selectedZone];
+  const energy=moodEnergy[schedule[currentIndex].mainMood];
   ctx.fillStyle='#fa210f';
   for(const dot of particles){
-    const x=(dot.x+Math.sin(phase*.3+dot.phase)*.0018)*width;
-    const y=(dot.y+Math.cos(phase*.25+dot.phase)*.0018)*height;
-    const nearby=zone?Math.hypot(dot.x-zone[0],dot.y-zone[1])<.15:false;
-    const radius=Math.max(.6,dot.size*scale*(1+Math.sin(phase+dot.phase)*.055)*(nearby?1.25:1));
-    ctx.globalAlpha=nearby?1:.84+Math.sin(dot.phase)*.13;
-    ctx.beginPath();ctx.arc(x,y,radius,0,Math.PI*2);ctx.fill();
+    const pose=particlePose(dot,phase,energy,zone);
+    const radius=Math.max(.55,pose.radius*scale);
+    ctx.globalAlpha=(.8+Math.sin(dot.phase)*.17)*pose.opacity;
+    ctx.beginPath();ctx.arc(pose.x*width,pose.y*height,radius,0,Math.PI*2);ctx.fill();
   }
   ctx.globalAlpha=1;
 }
