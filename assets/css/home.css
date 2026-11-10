@@ -1386,21 +1386,24 @@ h2, h3 { text-wrap: balance; overflow-wrap: break-word; scroll-margin-top: 24px;
 .skills-ready .skills-fallback{display:none}
 .hero-fallback #skills-spheres{display:none}
 .hero-fallback .skills-fallback{display:grid}
-.hero-identity{position:absolute;left:6%;top:64%;z-index:3;font-size:clamp(16px,1.7vw,27px)}
-.hero-identity p{font-size:12px;margin:8px 0}
 .hero-stage .burst{display:none}
 .hero-stage h1{width:76%;font-weight:900}
 .hero-stage .hero-stickers{left:15%;bottom:2%;font-size:clamp(15px,1.8vw,30px)}
 @media(max-width:760px){
 .hero-stage .skills-collage{width:76%;height:59%;right:-12%;top:29%}
 .hero-stage h1{width:100%;font-size:23vw}
-.hero-identity{left:3%;top:29%;font-size:15px}
-.hero-identity p{font-size:10px}
 .hero-stage .hero-stickers{left:4%;bottom:1%;font-size:17px}
 .skills-controls{right:22%;bottom:0;font-size:9px}
 .hero-stage .hero-asterisk{bottom:24%;font-size:70px}
 }
 
-@media(max-width:760px){.hero-identity{top:35%}.hero-stage .skills-collage{top:32%;height:54%}}
+@media(max-width:760px){.hero-stage .skills-collage{top:32%;height:54%}}
 
 @media(max-width:760px){.skills-controls{top:10%;bottom:auto;right:22%}.skills-controls>span{display:none}}
+
+/* Spin each star around its own centre, preserving the wrapper's placement. */
+.hero-asterisk { z-index:6; pointer-events:none; }
+.hero-asterisk .asterisk-icon,
+.contact-star .asterisk-icon { transform-origin:50% 50%; animation:star-turn 18s linear infinite; }
+.contact-star .asterisk-icon { animation-duration:24s; }
+@keyframes star-turn { to { transform:rotate(360deg); } }
