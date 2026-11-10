@@ -3,246 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Project 03 · The Quantified Self</title>
-  <style>
-   
-    :root {
-      --color-good: #ff9a76;
-      --color-neutral: #a7d7c5;
-      --color-anxious: #7d9bb9;
-      --bg-main: #edf3ef;
-      --sidebar-white: rgba(255, 255, 255, 0.95);
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: var(--bg-main);
-      color: #333;
-    }
-
-   
-  .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 9999; 
-      background: white; 
-      padding: 10px 0; 
-    }
-
-
-
-
-
-
-
-    .nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .nav a {
-      padding: 8px 18px;
-      border: 2px solid black;
-      border-radius: 999px;
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
-      background-color: white;
-      transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease;
-      font-size: 14px;
-    }
-
-    .nav a:hover { background-color: #f0f0f0; }
-
-   
-    .project-page {
-      padding-top: 140px;
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: center;
-      padding-bottom: 100px;
-    }
-
-    h1 {
-      font-size: 3rem;
-      font-weight: bold;
-      margin-bottom: 50px;
-      letter-spacing: 1px;
-    }
-
-    .interaction-wrapper {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 0 20px;
-    }
-
-  
-    #control-panel {
-      width: 280px;
-      background: var(--sidebar-white);
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      flex-shrink: 0;
-      height: fit-content;
-      text-align: left;
-    }
-
-    #control-panel h2 { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; }
-
-    .day-card {
-      padding: 15px;
-      margin-bottom: 12px;
-      border-radius: 10px;
-      background: #fff;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    .day-card.active { border: 2px solid black; transform: translateX(5px); }
-    .day-date { font-weight: bold; font-size: 0.9rem; }
-    .day-main-mood { font-size: 0.75rem; color: #555; margin-top: 4px; }
-
-    .mood-tag {
-      display: inline-block;
-      margin-top: 10px;
-      font-size: 0.65rem;
-      padding: 4px 12px;
-      border-radius: 999px;
-      text-transform: uppercase;
-      color: #17221b;
-      font-weight: bold;
-    }
-
-  
-    .map-container {
-      position: relative;
-      flex: 1;
-      max-width: 900px;
-      aspect-ratio: 2000 / 1100;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-      overflow: hidden;
-      border: 2px solid black;
-    }
-
-    #particle-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 5;
-    }
-
-    #info-panel {
-      position: absolute;
-      bottom: 25px;
-      right: 25px;
-      width: 220px;
-      background: rgba(255, 255, 255, 0.95);
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      z-index: 10;
-      display: none;
-      pointer-events: none;
-      border-top: 5px solid black;
-      text-align: left;
-    }
-
-    .image-gallery {
-      margin-top: 80px;
-      padding: 0 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-    }
-
-    .image-item { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-    .image-item img { width: 100%; display: block; }
-    .image-label { margin-top: 15px; font-size: 14px; color: #666; font-weight: bold; }
-
-    @media (max-width: 900px) {
-      .interaction-wrapper { flex-direction: column; align-items: center; }
-      #control-panel { width: 95%; }
-    }
-  </style>
-  <link rel="stylesheet" href="../assets/css/project-accessibility.css">
+  <meta name="description" content="A week of movements and moods, mapped as an interactive emotional overprint.">
+  <title>The Quantified Self — Yuting Zhong</title>
   <link rel="stylesheet" href="../assets/css/project-header.css?v=20261110-unified">
+  <link rel="stylesheet" href="../assets/css/mood-map.css?v=20261110-overprint">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-
   <header class="project-header">
     <a class="brand" href="../index.html#home" aria-label="Yuting Zhong, home">yz ↗</a>
     <nav aria-label="Main navigation"><a href="../index.html#projects">All work</a><a href="../index.html#About">About</a><a href="../index.html#contact">Contact</a></nav>
   </header>
 
-  <main class="project-page" id="main">
-    <h1>Project #3: The Quantified Self</h1>
-
-    <div class="experience-controls"><button type="button" id="animation-toggle" aria-pressed="false" aria-controls="particle-canvas">Pause animation</button></div>
-    <p id="map-instructions" class="content-note">Choose a day, then choose a location on the map to explore its mood. Keyboard and touch controls work too.</p>
-    <p id="mood-summary" class="mood-summary" role="status"></p>
-    <div class="interaction-wrapper">
-      <div id="control-panel">
-        <h2>Weekly Mood Log</h2>
-        <p style="font-size:0.75rem; color:#555; margin-bottom:20px;">Mapping emotions based on actual movements.</p>
-        <div id="days-container"></div>
-      </div>
-
+  <main id="main" class="emotional-atlas">
+    <div class="atlas-masthead">
+      <div class="project-edition"><span>03</span><p>EMOTIONAL<br>OVERPRINT</p></div>
+      <h1>THE QUANTIFIED SELF</h1>
+      <p class="week-label">WEEK 01 /<br>EMOTIONAL<br>GEOGRAPHY</p>
+      <button type="button" id="animation-toggle" aria-pressed="false" aria-controls="particle-canvas">Pause <span aria-hidden="true">Ⅱ</span></button>
+    </div>
+    <div class="atlas-layout">
+      <aside id="control-panel" aria-label="Weekly mood log">
+        <p class="atlas-intro" id="map-instructions">A spatial collage of movement and mood, overlaid from daily life.</p>
+        <div id="days-container" role="group" aria-label="Choose a day"></div>
+        <div class="selected-day">
+          <p class="field-label">SELECTED DAY</p>
+          <h2 id="selected-date">24 NOV</h2>
+          <p class="field-label muted">ROUTE</p>
+          <p id="selected-route">DORM → CITY → DORM</p>
+          <div class="selected-mood"><span class="field-label">MOOD</span><strong id="selected-mood">ANXIOUS</strong></div>
+        </div>
+        <div id="info-panel" aria-live="polite" hidden>
+          <h3 id="zone-name">Location</h3>
+          <p id="location-mood"></p><p id="zone-story"></p>
+        </div>
+        <p id="mood-summary" class="sr-only" role="status" aria-live="polite"></p>
+      </aside>
       <div class="map-container" id="map-holder">
         <canvas id="particle-canvas" aria-hidden="true"></canvas>
         <div class="zone-controls" role="group" aria-label="Map locations" aria-describedby="map-instructions">
-          <button type="button" class="zone-button" data-zone="DORM" style="left:75%;top:35%" aria-pressed="false" aria-controls="info-panel">Dorm</button>
-          <button type="button" class="zone-button" data-zone="SCHOOL" style="left:45%;top:35%" aria-pressed="false" aria-controls="info-panel">School</button>
-          <button type="button" class="zone-button" data-zone="CITY" style="left:20%;top:80%" aria-pressed="false" aria-controls="info-panel">City</button>
-          <button type="button" class="zone-button" data-zone="STATION" style="left:15%;top:60%" aria-pressed="false" aria-controls="info-panel">Station</button>
+          <button type="button" class="zone-button" data-zone="SCHOOL" aria-pressed="false" aria-controls="info-panel">SCHOOL</button>
+          <button type="button" class="zone-button" data-zone="DORM" aria-pressed="false" aria-controls="info-panel">DORM</button>
+          <button type="button" class="zone-button" data-zone="STATION" aria-pressed="false" aria-controls="info-panel">STATION</button>
+          <button type="button" class="zone-button" data-zone="CITY" aria-pressed="false" aria-controls="info-panel">CITY</button>
         </div>
-        <div id="info-panel" aria-live="polite">
-          <h3 id="zone-name" style="margin:0; font-size:1rem;">Location</h3>
-          <p id="location-mood" style="font-weight:bold; font-size:13px; margin:10px 0;"></p>
-          <p id="zone-story" style="font-size:12px; color:#666; margin:0; line-height:1.5;"></p>
+        <div class="mood-overprint" aria-hidden="true">
+          <span style="left:3%;top:7%">good</span><span style="left:33%;top:18%">anxious</span>
+          <span style="left:18%;top:29%">anxious</span><span class="large" style="left:30%;top:37%">anxious</span>
+          <span style="left:61%;top:25%">anxious</span><span style="left:76%;top:32%">anxious</span>
+          <span style="left:90%;top:19%">good</span><span style="left:4%;top:31%">neutral</span>
+          <span style="left:12%;top:55%">neutral</span><span style="left:38%;top:49%">anxious</span>
+          <span style="left:58%;top:58%">anxious</span><span class="large" style="left:28%;top:77%">anxious</span>
+          <span style="left:34%;top:64%">anxious</span><span style="left:85%;top:47%">neutral</span>
+          <span style="left:23%;top:88%">good</span><span style="left:82%;top:85%">neutral</span>
         </div>
       </div>
     </div>
-
-    
-
-<div class="image-gallery">
-    
-    <div class="image-item">
-        <img src="../assets/images/image-pending.svg" data-original-src="../assets/images/project03/P3 SET-01.jpg" alt="Project documentation image — coming soon" width="1200" height="800" loading="lazy">
-        <div class="image-label">SET-01</div>
-    </div>
-
-    <div class="image-item">
-        <img src="../assets/images/image-pending.svg" data-original-src="../assets/images/project03/P3 SET-02.jpg" alt="Project documentation image — coming soon" width="1200" height="800" loading="lazy">
-        <div class="image-label">SET-02</div>
-    </div>
-
-    <div class="image-item">
-        <img src="../assets/images/image-pending.svg" data-original-src="../assets/images/project03/P3 SET-03.jpg" alt="Project documentation image — coming soon" width="1200" height="800" loading="lazy">
-        <div class="image-label">SET-03</div>
-    </div>
-
-</div>
-
-
-
-
-
-
+    <footer class="atlas-footer"><span>20—26 NOV / A WEEK IN MOTION</span><span>SCHEMATIC MAP · PERSONAL MOOD LOG</span><span>SELECT A DAY, THEN A LOCATION ↗</span></footer>
   </main>
-  <script src="../assets/js/mood-map.js" defer></script>
+  <script src="../assets/js/mood-map.js?v=20261110-overprint" defer></script>
 </body>
 </html>

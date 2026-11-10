@@ -1,0 +1,90 @@
+:root { --ink:#080909; --paper:#eeedeb; --red:#fa210f; --yellow:#d5ff00; --color-good:#409e2c; --color-neutral:#a3a3a0; --color-anxious:#fa210f; color-scheme:light; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font-family:Arial,Helvetica,sans-serif; }
+button { font:inherit; cursor:pointer; touch-action:manipulation; color:inherit; }
+a:focus-visible,button:focus-visible { outline:3px solid var(--ink); outline-offset:4px; }
+.sr-only,.skip-link:not(:focus) { position:absolute; width:1px; height:1px; clip-path:inset(50%); overflow:hidden; white-space:nowrap; }
+.skip-link:focus { position:fixed; top:10px; left:10px; z-index:30; padding:12px; background:white; color:black; }
+.project-header { background:var(--paper); padding-top:10px; padding-bottom:10px; }
+.project-header .brand { font-size:30px; }
+.emotional-atlas { padding:22px 2% 16px; max-width:2200px; margin:auto; }
+.atlas-masthead { display:grid; grid-template-columns:260px minmax(0,1fr) 170px 115px; gap:20px; align-items:center; margin-bottom:22px; }
+.project-edition { display:flex; align-items:center; gap:16px; border-right:1px solid; align-self:stretch; }
+.project-edition > span { font-size:clamp(40px,4.3vw,74px); line-height:.9; font-weight:900; letter-spacing:-.06em; padding-right:16px; border-right:1px solid; }
+.project-edition p { font-size:clamp(14px,1.4vw,24px); font-weight:800; line-height:1; letter-spacing:-.04em; margin:0; }
+h1 { font-size:clamp(28px,3.9vw,76px); font-weight:900; line-height:.93; letter-spacing:-.065em; margin:0; }
+.week-label { border-left:1px solid; border-right:1px solid; padding:0 20px; margin:0; font-size:clamp(14px,1.3vw,24px); font-weight:800; line-height:1.05; }
+#animation-toggle { border:1px solid; border-radius:0; min-height:44px; background:transparent; padding:10px; font-weight:800; font-size:19px; white-space:nowrap; }
+#animation-toggle:hover { background:var(--ink); color:var(--paper); }
+.motion-icon { display:inline-block; width:10px; height:13px; vertical-align:-1px; margin-left:3px; }
+.motion-icon.pause { border-left:3px solid; border-right:3px solid; }
+.motion-icon.play { width:0; height:0; border-left:10px solid; border-top:7px solid transparent; border-bottom:7px solid transparent; }
+.atlas-layout { display:grid; grid-template-columns:260px minmax(0,1fr); gap:24px; }
+#control-panel { min-width:0; }
+.atlas-intro { border-top:1px solid #555; border-bottom:1px solid #555; margin:0; padding:14px 0; font-size:19px; line-height:1.17; letter-spacing:-.025em; max-width:100%; }
+#days-container { padding:8px 0 12px; border-bottom:1px solid #555; }
+.day-card { width:100%; display:grid; grid-template-columns:18px 1fr 1fr; align-items:center; gap:15px; border:0; border-radius:0; background:transparent; text-align:left; min-height:43px; padding:8px 7px; }
+.day-card::before { content:""; width:15px; height:15px; border-radius:50%; background:var(--mood); }
+.day-card.active { background:var(--yellow); }
+.day-card:hover:not(.active) { background:#00000009; }
+.day-date { font-weight:800; font-size:20px; letter-spacing:-.04em; white-space:nowrap; }
+.day-main-mood { font-size:19px; letter-spacing:-.03em; }
+.selected-day { padding-top:18px; }
+.field-label { font-size:16px; margin:0; line-height:1.1; }
+.muted { color:#747470; }
+#selected-date { margin:2px 0 12px; font-size:46px; line-height:1; letter-spacing:-.065em; font-weight:900; }
+#selected-route { font-size:18px; line-height:1.25; font-weight:700; letter-spacing:-.035em; margin:4px 0 20px; }
+.selected-mood { display:flex; justify-content:space-between; align-items:center; gap:16px; }
+#selected-mood { background:var(--mood); color:#080909; padding:8px 12px; font-size:23px; letter-spacing:-.04em; }
+#selected-mood[data-mood="good"] { background:#80c76b; }
+#info-panel { border-top:1px solid #777; margin-top:18px; padding-top:12px; font-size:12px; line-height:1.5; }
+#info-panel h3 { font-size:14px; margin:0 0 6px; }
+#info-panel p { margin:4px 0; }
+#info-panel[hidden] { display:none; }
+.map-container { position:relative; min-width:0; min-height:590px; height:clamp(590px,calc(100svh - 210px),900px); overflow:hidden; isolation:isolate; background:#d7d6d0 url('../images/emotional-city.svg') center/100% 100% no-repeat; }
+#particle-canvas { position:absolute; inset:0; width:100%; height:100%; z-index:1; pointer-events:none; }
+.zone-controls { position:absolute; inset:0; z-index:3; pointer-events:none; }
+.zone-button { position:absolute; transform:translate(-20px,-50%); min-height:44px; min-width:44px; border:0; padding:2px 9px 2px 43px; background:transparent; font-size:clamp(18px,2.15vw,38px); font-weight:900; letter-spacing:-.055em; line-height:1; pointer-events:auto; white-space:nowrap; }
+.zone-button::before { content:""; position:absolute; top:50%; left:0; width:27px; height:27px; transform:translateY(-50%); background:#080909; border:4px solid #fffdf1; border-radius:50%; }
+.zone-button::after { content:""; position:absolute; z-index:-1; left:37px; top:0; right:0; bottom:0; background:#f4f1e8; }
+.zone-button[aria-pressed="true"]::after,.zone-button:hover::after { background:var(--yellow); }
+.zone-button:focus-visible { outline-offset:5px; }
+.mood-overprint { position:absolute; inset:0; z-index:2; pointer-events:none; color:var(--red); font-weight:800; font-size:clamp(18px,2.1vw,39px); line-height:1; letter-spacing:-.055em; }
+.mood-overprint span { position:absolute; text-shadow:0 1px 4px #eeedeb; }
+.mood-overprint .large { font-size:1.55em; font-weight:900; }
+.atlas-footer { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-top:12px; font-size:9px; letter-spacing:.05em; color:#575752; }
+@media(min-width:1750px) { .atlas-masthead,.atlas-layout { grid-template-columns:300px minmax(0,1fr) 210px 130px; } .atlas-layout { grid-template-columns:300px minmax(0,1fr); } .day-card { min-height:48px; } .atlas-intro { font-size:23px; } .day-date { font-size:24px; } .day-main-mood { font-size:23px; } }
+@media(max-width:1200px) { .atlas-masthead { grid-template-columns:220px minmax(0,1fr) 120px; gap:16px; } .week-label { display:none; } .atlas-layout { grid-template-columns:220px minmax(0,1fr); gap:18px; } .project-edition { gap:10px; } .project-edition > span { padding-right:10px; } .day-card { gap:10px; } .day-date,.day-main-mood { font-size:17px; } .atlas-intro { font-size:17px; } #selected-date { font-size:40px; } }
+@media(max-width:760px) {
+  .emotional-atlas { padding:18px 4% 16px; }
+  .atlas-masthead { grid-template-columns:1fr auto; gap:16px; margin-bottom:18px; }
+  .project-edition { border:0; gap:10px; }
+  .project-edition > span { font-size:32px; }
+  .project-edition p { font-size:12px; }
+  h1 { grid-row:2; grid-column:1/-1; font-size:clamp(36px,8vw,56px); letter-spacing:-.06em; max-width:700px; }
+  #animation-toggle { grid-column:2; grid-row:1; min-height:40px; font-size:15px; padding:8px 12px; }
+  .atlas-layout { grid-template-columns:minmax(0,1fr); gap:18px; }
+  .map-container { grid-row:1; height:58svh; min-height:400px; max-height:560px; }
+  .atlas-intro { padding:12px 0; font-size:16px; }
+  #days-container { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; padding:10px 0; }
+  .day-card { grid-template-columns:10px 1fr; gap:5px; min-height:55px; padding:8px 5px; }
+  .day-card::before { width:8px; height:8px; }
+  .day-date { font-size:14px; }
+  .day-main-mood { grid-column:2; font-size:13px; }
+  .selected-day { padding-top:14px; }
+  #selected-date { font-size:42px; }
+  .selected-mood { justify-content:flex-start; gap:24px; }
+  #selected-route { font-size:18px; }
+  .mood-overprint { font-size:20px; }
+  .mood-overprint .large { font-size:1.3em; }
+  .mood-overprint span:nth-child(2n) { display:none; }
+  .mood-overprint span:nth-child(7) { left:auto!important; right:8px; }
+  .zone-button { font-size:18px; padding-left:29px; transform:translate(-12px,-50%); }
+  .zone-button::before { width:18px; height:18px; border-width:3px; }
+  .zone-button::after { left:25px; }
+  .zone-button[data-zone="DORM"] { padding:2px 29px 2px 9px; transform:translate(calc(-100% + 12px),-50%); }
+  .zone-button[data-zone="DORM"]::before { left:auto; right:0; }
+  .zone-button[data-zone="DORM"]::after { left:0; right:25px; }
+  .atlas-footer { margin-top:20px; padding-top:12px; border-top:1px solid #777; font-size:8px; }
+}
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }
