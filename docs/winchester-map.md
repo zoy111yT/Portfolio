@@ -9,3 +9,5 @@ Map data © OpenStreetMap contributors. Licensed under the Open Database License
 ## Expressive motion
 
 The red particles flow in both directions along the artwork route, drift through nearby space, and gather around a focused location. Their radius and motion vary with the existing categorical mood log: neutral is calmer, good is moderate and anxious is more restless. These are artistic mappings of the recorded categories, not measured numeric mood scores. Pausing freezes automatic motion; reduced-motion settings start the view paused. The four labels follow the author’s annotated composition rather than geocoded coordinates.
+
+The author subsequently requested exchanging SCHOOL and STATION. SCHOOL is now at normalized position (0.55, 0.49) and STATION at (0.13, 0.17). Daily route traces and location mood interactions use these exchanged identities; the overall visual route shape is preserved.

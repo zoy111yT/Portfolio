@@ -18,11 +18,11 @@ const toggle = document.getElementById('animation-toggle');
 const days = document.getElementById('days-container');
 const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
 const zoneButtons = [...document.querySelectorAll('.zone-button')];
-const P = { SCHOOL:[.13,.17], DORM:[.86,.20], STATION:[.55,.49], CITY:[.48,.73] };
-const dormStation = [P.DORM,[.77,.23],[.70,.28],[.64,.36],[.59,.42],P.STATION];
-const stationCity = [P.STATION,[.53,.56],[.52,.63],[.49,.67],P.CITY];
-const citySchool = [P.CITY,[.42,.62],[.38,.52],[.29,.44],[.21,.32],P.SCHOOL];
-const wholeRoute = [...dormStation,...stationCity.slice(1),...citySchool.slice(1)];
+const P = { SCHOOL:[.55,.49], DORM:[.86,.20], STATION:[.13,.17], CITY:[.48,.73] };
+const dormSchool = [P.DORM,[.77,.23],[.70,.28],[.64,.36],[.59,.42],P.SCHOOL];
+const schoolCity = [P.SCHOOL,[.53,.56],[.52,.63],[.49,.67],P.CITY];
+const cityStation = [P.CITY,[.42,.62],[.38,.52],[.29,.44],[.21,.32],P.STATION];
+const wholeRoute = [...dormSchool,...schoolCity.slice(1),...cityStation.slice(1)];
 const colors = { good:'#409e2c', neutral:'#a3a3a0', anxious:'#fa210f' };
 let currentIndex = 4;
 let selectedZone = null;
@@ -99,9 +99,9 @@ container.addEventListener('pointermove',event=>{
 container.addEventListener('pointerleave',()=>{pointer=null;if(paused)drawFrame();});
 function routeForDay() {
   const path = schedule[currentIndex].path;
-  if (path.includes('SCHOOL')) return wholeRoute;
-  if (path.includes('CITY')) return [...dormStation,...stationCity.slice(1)];
-  if (path.includes('STATION')) return dormStation;
+  if (path.includes('STATION')) return wholeRoute;
+  if (path.includes('CITY')) return [...dormSchool,...schoolCity.slice(1)];
+  if (path.includes('SCHOOL')) return dormSchool;
   return [P.DORM];
 }
 function readState() {
