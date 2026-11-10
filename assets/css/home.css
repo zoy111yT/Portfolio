@@ -1252,6 +1252,66 @@ h2, h3 { text-wrap: balance; overflow-wrap: break-word; scroll-margin-top: 24px;
 .atlas-preview .art-sticker { left:5%; bottom:7%; font-size:9px; }
 .exploration-source { margin:9px 0 0; text-align:right; font-size:10px; color:#606259; }
 .exploration-source a { color:inherit; text-underline-offset:3px; }
+
+/* Keep the green About composition; add the portfolio's full information layer. */
+.about-section { padding-bottom:48px; }
+.about-section .about-layout { margin-top:38px; gap:6%; }
+.about-section .about-art { min-height:420px; }
+.about-section .about-art h2 { font-size:clamp(85px,9vw,130px); }
+.about-identity { position:absolute; left:2%; top:58%; display:grid; gap:4px; }
+.about-identity > span { font-size:25px; line-height:1.2; }
+.about-identity strong { font-size:24px; font-weight:500; letter-spacing:-.035em; line-height:1.2; }
+.about-identity p { margin:3px 0 0; font-size:12px; }
+.about-section .about-badge { bottom:15px; font-size:10px; padding:25px 18px; }
+.about-section .eyes { bottom:0; }
+.about-copy .biography { margin-top:20px; }
+.about-section .about-copy .biography p { margin:0 0 16px; max-width:650px; font-size:clamp(16px,1.35vw,20px); line-height:1.5; }
+.about-keywords { margin-top:22px; }
+.about-keywords h3 { margin:0; font-size:20px; font-weight:500; letter-spacing:-.025em; }
+.about-keywords .keyword-tags { gap:8px; margin:12px 0 16px; }
+.about-keywords .keyword-tags span { padding:9px 13px; font-size:11px; }
+.about-section .about-copy .text-link { padding:12px 0; max-width:190px; }
+.about-details { margin-top:36px; display:grid; grid-template-columns:1.1fr 1.4fr 1fr; border-block:1px solid var(--ink); padding:24px 0; }
+.about-detail { display:grid; grid-template-columns:38px minmax(0,1fr); gap:15px; padding:0 24px; border-left:1px solid var(--ink); }
+.about-detail:first-child { border-left:0; padding-left:0; }
+.about-detail:last-child { padding-right:0; }
+.about-detail-number { font-size:34px; font-weight:700; line-height:1; letter-spacing:-.05em; }
+.about-detail h3 { margin:0 0 14px; font-size:21px; font-weight:500; letter-spacing:-.03em; }
+.about-detail p { margin:0; font-size:13px; line-height:1.5; }
+.about-detail .education-degree { margin-top:12px; }
+.education-degree span { font-size:12px; }
+.about-tools-image { padding:5px; background:#000; max-width:400px; }
+.about-tools-image img { display:block; width:100%; height:auto; }
+.about-detail .about-tool-names { margin-top:9px; font-size:10px; line-height:1.55; }
+.about-detail .core-skill-list { font-size:15px; line-height:1.65; }
+.core-skill-list span { display:block; }
+@media(min-width:1600px) { .about-section .about-layout { gap:7%; } .about-section .about-art { min-height:430px; } .about-section .about-copy .biography p { font-size:21px; } .about-keywords .keyword-tags span { font-size:12px; } .about-detail p { font-size:15px; } }
+@media(max-width:1000px) {
+  .about-details { grid-template-columns:1fr 1.3fr; row-gap:24px; }
+  .about-detail:last-child { grid-column:1/-1; border-left:0; border-top:1px solid; padding:22px 0 0; }
+  .about-detail .core-skill-list { display:flex; flex-wrap:wrap; gap:5px 20px; }
+  .about-detail .core-skill-list br { display:none; }
+}
+@media(max-width:760px) {
+  .about-section .about-layout { grid-template-columns:1fr; margin-top:30px; gap:28px; }
+  .about-section .about-art { min-height:320px; }
+  .about-section .about-art h2 { font-size:clamp(76px,22vw,110px); max-width:none; margin-left:0; }
+  .about-identity { top:55%; left:1%; }
+  .about-identity > span { font-size:21px; }
+  .about-identity strong { font-size:21px; }
+  .about-section .about-badge { padding:19px 13px; font-size:8px; bottom:2px; }
+  .about-section .eyes { left:1%; }
+  .about-section .about-copy .biography p { font-size:17px; }
+  .about-keywords .keyword-tags span { font-size:11px; padding:8px 12px; }
+  .about-details { grid-template-columns:minmax(0,1fr); margin-top:28px; padding:0; row-gap:0; }
+  .about-detail,.about-detail:first-child,.about-detail:last-child { grid-column:auto; border-left:0; border-top:1px solid; padding:22px 0; grid-template-columns:40px minmax(0,1fr); gap:14px; }
+  .about-detail:first-child { border-top:0; }
+  .about-detail h3 { margin-bottom:12px; }
+  .about-detail p { font-size:14px; }
+  .about-detail .about-tool-names { font-size:11px; }
+  .about-detail .core-skill-list { display:block; }
+  .about-detail .core-skill-list br { display:inline; }
+}
 .exploration-link:hover .atlas-map-sheet { transform:rotate(-9deg) translate(-2px,-2px); }
 .exploration-link:hover .atlas-log-sheet { transform:rotate(11deg) translate(2px,-2px); }
 @media(max-width:650px) {
