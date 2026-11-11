@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#151019"><title>Memorial Grove · Interactive experience</title><link rel="stylesheet" href="demo.css"></head>
+<body>
+<header class="masthead"><a href="../project-memorial-grove.html">← Portfolio</a><span>MEMORIAL GROVE</span><button id="language" aria-label="切换中文">中文</button></header>
+<main>
+ <aside class="intro"><p class="eyebrow">A GARDEN FOR REMEMBERING</p><h1>Let memories<br><em>keep growing.</em></h1><p id="intro-copy">A quiet place to remember, collect moments and revisit the people and places that stay with us.</p>
+ <nav id="chapters" aria-label="Explore the experience"></nav>
+ <p id="hint" class="hint" aria-live="polite"></p><button id="show-targets" aria-pressed="false">Show where to tap</button>
+ <p class="prototype-note" id="prototype-note">Interactive concept · Sample memories<br>Scan and VR scenes are visual previews.</p>
+ </aside>
+ <section class="playground" aria-label="Interactive app demo"><div class="stage-head"><span id="scene-name" aria-live="polite"></span><div><button id="back" aria-label="Previous screen">←</button><button id="restart" aria-label="Return to garden menu">⌂</button><button id="fullscreen" aria-label="Expand experience">⛶</button></div></div>
+ <div id="device" class="device"><div id="screen" class="screen"></div></div>
+ <div class="scene-footer"><span id="scene-counter"></span><span id="orientation"></span></div>
+ </section>
+</main>
+<dialog id="memory-dialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form><p class="eyebrow" id="memory-date"></p><h2 id="memory-title"></h2><p id="memory-copy"></p><label id="write-label" for="memory-input">Your memory</label><textarea id="memory-input" rows="4" placeholder="A moment you want to keep…"></textarea><div class="dialog-actions"><button id="plant">Plant this memory</button><button id="open-memory">Visit the garden ↗</button></div></dialog>
+<div id="toast" role="status"></div><script src="demo.js"></script>
+</body></html>
