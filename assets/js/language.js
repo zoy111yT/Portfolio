@@ -98,6 +98,7 @@
   "typography": "字体排印",
   "read original portfolio pdf ↗": "阅读原始作品集 PDF ↗",
   "explore the project ↓": "探索项目 ↓",
+  "view demo ↗": "查看演示 ↗",
   "project cover": "项目封面",
   "background and research": "背景与研究",
   "case studies and first sketches": "案例研究与初步草图",
